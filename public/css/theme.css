@@ -1,0 +1,80 @@
+/* Theme color settings */
+.text-theme {
+	color:#343a40;
+}
+.bg-theme {
+	background:#343a40;
+}
+.btn-theme {
+	color:#FFF;
+	background:#343a40;
+}
+.list-group-theme .list-group-item {
+	background:#343a40;
+	padding:0.25rem 1.25rem;
+}
+.list-group-theme .list-group-item a {
+	color:#ffffff80;
+	text-decoration:none;
+}
+.navbar-theme {
+	background:#007bff;
+	-webkit-box-shadow: 0 3px 3px -3px #222;
+	-moz-box-shadow: 0 3px 3px -3px #222;
+	box-shadow: 0 3px 3px -3px #222;
+}
+
+.text-theme-alt {
+	color:#343a40;
+}
+.bg-theme-alt {
+	background:#343a40;
+}
+.btn-theme-alt {
+	color:#FFF;
+	background:#343a40;
+}
+/* Dashboard menu */
+/*Collapse icon */
+[data-toggle="collapse"] .fa.collapse-icon:before {   
+	content: "\f0d7";
+	position:absolute;
+	right:5px;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+[data-toggle="collapse"].collapsed .fa.collapse-icon:before {
+	content: "\f0da";
+	position:absolute;
+	right:5px;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+/*Collapse icon position*/
+.nav-link {
+	position:relative;
+}
+.navbar-nav {
+	width:100%;
+}
+/* Dashboard border */
+.nav-item:not(:first-child) {
+	border-top:1px solid #303030;
+}
+/* Transition */
+.hover-move {
+	transition: 0.3s;
+	box-sizing:border-box;
+}
+.nav-link:hover .hover-move, .list-group-item:hover .hover-move {
+	margin-left:5px;
+}
+/*Top navbar size*/
+.fixed-top>.row {
+	width:100%;
+}
+/*Left navbar size*/
+#left-sidebar {
+	height:100%;
+}
