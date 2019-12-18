@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Styles -->
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/theme.css') }}?{{ time() }}" rel="stylesheet">
+	<link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 	@yield('style')
 </head>
 <body>

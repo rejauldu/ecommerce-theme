@@ -120,3 +120,7 @@ a {
 .topbar-divider {
 	width:25px;
 }
+.size-30 {
+	font-size:30px;
+	font-weight:700;
+}
