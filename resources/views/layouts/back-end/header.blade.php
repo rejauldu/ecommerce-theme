@@ -6,8 +6,9 @@
 	<!-- CSRF Token -->
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!--base url for Script files -->
-	<meta name="base-url" content="{{ URL::to('/') }}">
+	<meta name="base-url" content="{{ url('/') }}">
 	<title>{{ config('app.name', 'Laravel') }}</title>
+	<link rel="icon" href="{{ asset('assets/favicon.ico') }}" type="image/gif" sizes="16x16">
 	<!-- Fonts -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Styles -->
