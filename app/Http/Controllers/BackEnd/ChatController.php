@@ -5,16 +5,16 @@ namespace App\Http\Controllers\BackEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashBoardController extends Controller
+class ChatController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function chat()
     {
-        return view('back-end.dashboard');
+        return view('back-end.chat');
     }
 
     /**

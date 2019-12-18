@@ -11,12 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'FrontEnd\HomeController@index')->name('index');
+
+Auth::routes(['verify' => true]);
+
+//Routes for dashboard
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', 'BackEnd\DashboardController@dashboard')->name('dashboard');
+	Route::get('/chat', 'BackEnd\ChatController@chat')->name('chat');
+	Route::resource('users', 'BackEnd\UserController');
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/dashboard', 'BackEnd\DashboardController@index');
+Route::group(['middleware' => ['admin']], function () {
+	Route::get('/users', 'BackEnd\AdminController@users')->name('users');
+	Route::resource('emails', 'BackEnd\EmailController');
+});

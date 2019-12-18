@@ -22,5 +22,16 @@
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": {
+        "lg-autoplay": "^1.0.4",
+        "lg-fullscreen": "^1.1.0",
+        "lg-hash": "^1.0.4",
+        "lg-pager": "^1.0.2",
+        "lg-share": "^1.1.0",
+        "lg-thumbnail": "^1.1.0",
+        "lg-video": "^1.2.2",
+        "lg-zoom": "^1.1.0",
+        "lightgallery": "^1.6.12"
     }
 }

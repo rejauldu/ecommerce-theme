@@ -1,6 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
+@if(session()->has('message'))
+<div class="alert alert-warning">
+	{{ session()->get('message') }}
+</div>
+@endif
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="col-12 col-sm-6 col-md-4 col-lg-3 my-2">

@@ -30,6 +30,9 @@
 							</li>
 						@endif
 					@else
+					<li class="nav-item">
+						<a class="nav-link text-white" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+					</li>
 					<div class="topbar-divider d-none d-sm-block"></div>
 					<!-- Nav Item - Alerts -->
 					<li class="nav-item dropdown no-arrow mx-1 transition">

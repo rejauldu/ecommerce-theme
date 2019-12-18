@@ -5,16 +5,16 @@ namespace App\Http\Controllers\BackEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashBoardController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        return view('back-end.dashboard');
+        return view('back-end.user.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class DashBoardController extends Controller
      */
     public function create()
     {
-        //
+        return view('back-end.email.create');
     }
 
     /**
@@ -46,7 +46,8 @@ class DashBoardController extends Controller
      */
     public function show($id)
     {
-        //
+		$id = decrypt($id);
+        return view('back-end.user.show');
     }
 
     /**
@@ -57,7 +58,8 @@ class DashBoardController extends Controller
      */
     public function edit($id)
     {
-        //
+        $id = decrypt($id);
+        return view('back-end.user.edit');
     }
 
     /**

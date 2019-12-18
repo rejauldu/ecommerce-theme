@@ -22,6 +22,6 @@
 		*/
 	</script>
 	<script src="{{ asset('js/theme.js') }}" defer></script>
-@yield('script')
+	@yield('script')
 </body>
 </html>

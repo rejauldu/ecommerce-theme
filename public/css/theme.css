@@ -47,6 +47,9 @@
 a {
 	text-decoration:none !important;
 }
+input {
+	max-width:100%;
+}
 /* Dashboard menu */
 .list-group-dark .list-group-item {
 	background:#343a40;
@@ -72,10 +75,10 @@ a {
 	transform: translate(0, -50%);
 }
 /*Collapse icon position*/
-.nav-link {
+#left-sidebar .nav-link {
 	position:relative;
 }
-.navbar-nav {
+#left-sidebar .navbar-nav {
 	width:100%;
 }
 /* Dashboard border */

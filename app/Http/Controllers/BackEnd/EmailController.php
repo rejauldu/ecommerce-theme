@@ -5,16 +5,16 @@ namespace App\Http\Controllers\BackEnd;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DashBoardController extends Controller
+class EmailController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        return view('back-end.dashboard');
+        return view('back-end.email.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class DashBoardController extends Controller
      */
     public function create()
     {
-        //
+        return view('back-end.email.create');
     }
 
     /**
