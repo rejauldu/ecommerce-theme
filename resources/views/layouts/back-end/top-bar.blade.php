@@ -99,8 +99,8 @@
 						</a>
 						<!-- Dropdown - User Information -->
 						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in position-absolute" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="{{ route('users.show', encrypt(Auth::user()->id)) }}"><i class="fa fa-user mr-2 text-gray-400"></i>{{ __('Profile') }}</a>
-							<a class="dropdown-item" href="{{ route('users.edit', encrypt(Auth::user()->id)) }}"><i class="fa fa-cogs mr-2 text-gray-400"></i>{{ __('Settings') }}</a>
+							<a class="dropdown-item" href="{{ route('users.show', numhash(Auth::user()->id)) }}"><i class="fa fa-user mr-2 text-gray-400"></i>{{ __('Profile') }}</a>
+							<a class="dropdown-item" href="{{ route('users.edit', numhash(Auth::user()->id)) }}"><i class="fa fa-cogs mr-2 text-gray-400"></i>{{ __('Settings') }}</a>
 							<a class="dropdown-item" href="#"><i class="fa fa-list mr-2 text-gray-400"></i>{{ __('Activity Log') }}</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out mr-2"></i>{{ __('Logout') }}</a>

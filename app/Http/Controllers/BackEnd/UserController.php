@@ -4,6 +4,8 @@ namespace App\Http\Controllers\BackEnd;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,6 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
+		$users = User::all();
         return view('back-end.user.index');
     }
 
@@ -46,8 +49,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-		$id = decrypt($id);
-        return view('back-end.user.show');
+		$id = numhash($id);
+		$user = User::find($id);
+        return view('back-end.user.show', compact('user'));
     }
 
     /**
@@ -58,8 +62,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $id = decrypt($id);
-        return view('back-end.user.edit');
+        $id = numhash($id);
+		$user = User::find($id);
+		//dd($user);
+        return view('back-end.user.edit', compact('user'));
     }
 
     /**
@@ -71,7 +77,30 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$request->validate([
+			'photo' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			'email' => 'sometimes|required|email',
+			'password_old' => 'sometimes|required',
+			'password' => ['sometimes', 'required', 'min:6', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%@]).*$/', 'different:password_old', 'confirmed']
+		]);
+		$file = $request->file('photo');
+		if($file) {
+			$destination_path = 'assets/profile';
+			$new_name = $id.'.'.$file->getClientOriginalExtension();
+			$file->move($destination_path, $new_name);
+			User::where('id', numhash($id))->update(['photo'=>$new_name]);
+		} elseif($request->password_old) {
+			$user = User::find(numhash($id));
+			if(Hash::check($request->password_old, $user->password)) {
+				$user->fill([
+					'password' => Hash::make($request->password)
+				])->save();
+			} else {
+				return 'Password did not match';
+			}
+		} else {
+			User::where('id', numhash($id))->update($request->except('_token', '_method', 'password_old', 'password', 'password_confirmation'));
+		}
     }
 
     /**

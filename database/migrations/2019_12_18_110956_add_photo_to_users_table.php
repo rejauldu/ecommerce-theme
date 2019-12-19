@@ -14,7 +14,7 @@ class AddPhotoToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('photo')->after('email')->nullable()->default('avatar.png');
+            $table->string('photo', 300)->after('email')->nullable()->default('avatar.png');
 			$table->tinyInteger('role')->after('photo')->default(0);
         });
     }

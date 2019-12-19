@@ -21,7 +21,7 @@
 			2. Add light-gallery-id and light-gallery-target attributes
 		*/
 	</script>
-	<script src="{{ asset('js/theme.js') }}" defer></script>
+	<script src="{{ asset('js/theme.js') }}?{{ time() }}" defer></script>
 @yield('script')
 </body>
 </html>

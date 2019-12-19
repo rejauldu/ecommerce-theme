@@ -50,6 +50,9 @@ a {
 input {
 	max-width:100%;
 }
+input[tupe="text"] {
+	color:#000;
+}
 /* Dashboard menu */
 .list-group-dark .list-group-item {
 	background:#343a40;

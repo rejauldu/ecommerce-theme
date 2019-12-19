@@ -24,4 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['admin']], function () {
 	Route::get('/users', 'BackEnd\AdminController@users')->name('users');
 	Route::resource('emails', 'BackEnd\EmailController');
+	Route::get('/clear-cache', function() {
+		Artisan::call('cache:clear');
+	});
 });
