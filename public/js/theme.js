@@ -109,3 +109,11 @@ function displayPhotoOnSelect(input) {
 		});
 	}, false);
 })();
+/* View port height matching */
+(function() {
+	var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+	var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+	var vp_h_55_md = document.querySelector('.vp-h-55-md');
+	if(w>768 && vp_h_55_md)
+		vp_h_55_md.style.height = (h-55)+'px';
+})();

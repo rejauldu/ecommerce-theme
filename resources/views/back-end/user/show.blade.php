@@ -12,7 +12,7 @@
 			<div class="text-center">
 				<img id="display-photo-on-select" src="{{ asset('/assets/profile') }}/{{ $user->photo }}" class="img-thumbnail rounded-circle" alt="avatar">
 				<h6>Upload a different photo...</h6>
-				<form class="ajax-upload text-left" action="{{ route('users.update', numhash($user->id)) }}" method="post" enctype="multipart/form-data">
+				<form class="ajax-upload text-left" action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data">
 					@csrf
 					@method('PUT')
 					<input type="file" id="file" name="photo" class="btn-theme" onchange="displayPhotoOnSelect(this)" accept="image/*" value="Upload picture" />
@@ -33,7 +33,7 @@
 			</ul>
 			<div class="tab-content mt-3">
 				<div class="tab-pane active" id="profile">
-					<form class="ajax-upload" action="{{ route('users.update', numhash($user->id)) }}" method="post">
+					<form class="ajax-upload" action="{{ route('users.update', $user->id) }}" method="post">
 						@csrf
 						@method('PUT')
 						<div class="form-group">
@@ -51,7 +51,7 @@
 					</form>
 				</div><!--/tab-pane-->
 				<div class="tab-pane" id="password">
-					<form class="ajax-upload" action="{{ route('users.update', numhash($user->id)) }}" method="post">
+					<form class="ajax-upload" action="{{ route('users.update', $user->id) }}" method="post">
 						@csrf
 						@method('PUT')
 						<div class="form-group">
@@ -72,7 +72,7 @@
 					</form>
 				</div><!--/tab-pane-->
 				<div class="tab-pane" id="address1">
-					<form class="ajax-upload" action="{{ route('users.update', numhash($user->id)) }}" method="post">
+					<form class="ajax-upload" action="{{ route('users.update', $user->id) }}" method="post">
 						@csrf
 						@method('PUT')
 						<div class="form-group">

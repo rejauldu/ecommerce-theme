@@ -137,6 +137,15 @@ input[tupe="text"] {
 .expand-on .collapse:not(.show):first-child {
 	display:block;
 }
+.pt-37 {
+	padding-top:37px;
+}
+.pt-55 {
+	padding-top:55px;
+}
+.sticky-offset-55 {
+    top: 55px;
+}
 @media screen and (min-width: 576px) {
 	.expand-on-sm [data-toggle="collapse"]:first-child {
 		display:none;
@@ -144,7 +153,12 @@ input[tupe="text"] {
 	.expand-on-sm .collapse:not(.show):first-child {
 		display:block;
 	}
-	
+	.pt-sm-37 {
+		padding-top:37px;
+	}
+	.pt-sm-55 {
+		padding-top:55px;
+	}
 }
 @media screen and (min-width: 768px) {
 	.expand-on-md [data-toggle="collapse"]:first-child {
@@ -153,8 +167,11 @@ input[tupe="text"] {
 	.expand-on-md .collapse:not(.show):first-child {
 		display:block;
 	}
-	.expand-on-md #left-sidebar-navbar {
-		min-height:100vh;
+	.pt-md-37 {
+		padding-top:37px;
+	}
+	.pt-md-55 {
+		padding-top:55px;
 	}
 }
 @media screen and (min-width: 992px) {
@@ -164,6 +181,12 @@ input[tupe="text"] {
 	.expand-on-lg .collapse:not(.show):first-child {
 		display:block;
 	}
+	.pt-lg-37 {
+		padding-top:37px;
+	}
+	.pt-lg-55 {
+		padding-top:55px;
+	}
 }
 @media screen and (min-width: 1200px) {
 	.expand-on-xl [data-toggle="collapse"]:first-child {
@@ -172,5 +195,14 @@ input[tupe="text"] {
 	.expand-on-xl .collapse:not(.show):first-child {
 		display:block;
 	}
-	
+	.pt-xl-37 {
+		padding-top:37px;
+	}
+	.pt-xl-55 {
+		padding-top:55px;
+	}
+}
+/*View port height matching*/
+.vp-h-55-md { /*height minus 55px;*/
+	overflow-y:scroll;
 }

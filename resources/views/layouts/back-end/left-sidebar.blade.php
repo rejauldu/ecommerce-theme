@@ -1,4 +1,4 @@
-<div class="row bg-dark expand-on-md" id="left-sidebar">
+<div class="row bg-dark expand-on-md vp-h-55-md sticky-top sticky-offset-55" id="left-sidebar">
 	<div class="col-12 navbar-dark" data-toggle="collapse" data-target="#left-sidebar-navbar">
 		<button class="navbar-toggler" type="button">
 			<span class="navbar-toggler-icon text-white"></span>

@@ -49,7 +49,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-		$id = numhash($id);
+		$id = $id;
 		$user = User::find($id);
         return view('back-end.user.show', compact('user'));
     }
@@ -62,7 +62,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $id = numhash($id);
+        $id = $id;
 		$user = User::find($id);
 		//dd($user);
         return view('back-end.user.edit', compact('user'));
@@ -88,9 +88,9 @@ class UserController extends Controller
 			$destination_path = 'assets/profile';
 			$new_name = $id.'.'.$file->getClientOriginalExtension();
 			$file->move($destination_path, $new_name);
-			User::where('id', numhash($id))->update(['photo'=>$new_name]);
+			User::where('id', $id)->update(['photo'=>$new_name]);
 		} elseif($request->password_old) {
-			$user = User::find(numhash($id));
+			$user = User::find($id);
 			if(Hash::check($request->password_old, $user->password)) {
 				$user->fill([
 					'password' => Hash::make($request->password)
@@ -99,7 +99,7 @@ class UserController extends Controller
 				return 'Password did not match';
 			}
 		} else {
-			User::where('id', numhash($id))->update($request->except('_token', '_method', 'password_old', 'password', 'password_confirmation'));
+			User::where('id', $id)->update($request->except('_token', '_method', 'password_old', 'password', 'password_confirmation'));
 		}
     }
 
