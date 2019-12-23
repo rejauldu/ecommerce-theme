@@ -63,7 +63,7 @@
 							<input id="password" type="password" class="form-control" name="password" value="" placeholder="Enter new password." title="Enter your password."/>
 						</div>
 						<div class="form-group">
-							<label for="password_confirmation"><h4>Verify Password</h4></label>
+							<label for="password_confirmation"><h4>Confirm Password</h4></label>
 							<input id="password_confirmation" type="password" class="form-control" name="password_confirmation" value="" placeholder="Enter new password again." title="Enter your password again.">
 						</div>
 						<div class="form-group">

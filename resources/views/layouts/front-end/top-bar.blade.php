@@ -1,12 +1,5 @@
 <div class="row">
-	<!--The following div is just to take the space of fixed top bar-->
-	<div class="d-none d-md-flex col-md-12 navbar">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url('/') }}">{{ url('/') }}</a>
-			</li>
-		</ul>
-	</div>
+	<!--/Space ends-->
 	<div class="d-none d-md-flex col-md-12 navbar navbar-theme fixed-top">
 		<div class="row">
 			<div class="col-md-3 col-lg-2">
@@ -16,6 +9,7 @@
 					</li>
 				</ul>
 			</div>
+			
 			<div class="col-md-9 col-lg-10">
 				<!-- Topbar Navbar -->
 				<ul class="navbar-nav navbar-expand-md ml-auto py-0 flex-end">

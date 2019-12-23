@@ -1,13 +1,5 @@
 <div class="row">
-	<!--The following div is just to take the space of fixed top bar-->
-	<div class="d-none d-md-flex col-md-12 navbar">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="{{ url('/') }}">{{ url('/') }}</a>
-			</li>
-		</ul>
-	</div>
-	<div class="d-none d-md-flex col-md-12 navbar navbar-theme fixed-top">
+	<div class="d-none d-md-flex col-md-12 navbar navbar-theme fixed-top navbar-inverse">
 		<div class="row">
 			<div class="col-md-3 col-lg-2">
 				<ul class="navbar-nav">
@@ -31,6 +23,9 @@
 						@endif
 					@else
 					<div class="topbar-divider d-none d-sm-block"></div>
+					<li>
+						
+					</li>
 					<!-- Nav Item - Alerts -->
 					<li class="nav-item dropdown no-arrow mx-1 transition">
 						<a class="nav-link dropdown-toggle text-white" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

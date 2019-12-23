@@ -11,16 +11,6 @@
 	<script>AOS.init({once: true});</script>
 	<!-- /Data aos -->
 	<script src="{{ asset('js/smooth-scroll.js') }}" defer></script>
-	<!-- Light gallery-->
-	<script type="text/javascript">
-		/*$(document).ready(function(){
-			$('.light-gallery').lightGallery();
-		});
-		/*
-			1. div class="hidden">div class="light-gallery">>>ul>li>a>img
-			2. Add light-gallery-id and light-gallery-target attributes
-		*/
-	</script>
 	<script src="{{ asset('js/theme.js') }}?{{ time() }}" defer></script>
 @yield('script')
 </body>

@@ -16,7 +16,7 @@
 	<!-- Animation on Scroll -->
 	<link rel="stylesheet" href="{{ asset('css/aos.css') }}">
 	<!-- Style for this theme -->
-	<link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/theme.css') }}?{{ time() }}" rel="stylesheet">
 	@yield('style')
 </head>
 <body>
