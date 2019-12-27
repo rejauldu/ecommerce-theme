@@ -1,3 +1,6 @@
+body {
+    font-size: 14px;
+}
 /* Theme color settings */
 .text-theme {
 	color:#4e73df !important;
@@ -5,8 +8,11 @@
 .bg-theme {
 	background:#4e73df !important;
 }
+.bg-dark-theme {
+	background:#222d32 !important;
+}
 .btn-theme {
-	color:#FFF !important;
+	color:#EEE !important;
 	background:#4e73df !important;
 }
 .list-group-theme .list-group-item {
@@ -14,7 +20,7 @@
 	padding:0.25rem 1.25rem;
 }
 .list-group-theme .list-group-item a {
-	color:#ffffff80;
+	color:#b8c7ce;
 }
 .navbar-theme {
 	background:#4e73df;
@@ -30,22 +36,22 @@
 	opacity:0.8;
 	margin:-2px;
 }
-
-.text-theme-alt {
-	color:#4e73df;
+.text-theme-inverse {
+	color:#b8c7ce;
 }
-.bg-theme-alt {
+.bg-theme-inverse {
 	background:#4e73df;
 }
-.btn-theme-alt {
-	color:#FFF;
+.btn-theme-inverse {
+	color:#b8c7ce;
 	background:#4e73df;
 }
 .flex-end {
 	justify-content:flex-end;
 }
-a {
-	text-decoration:none !important;
+a, a:hover {
+	text-decoration:none;
+	color:black;
 }
 input {
 	max-width:100%;
@@ -54,15 +60,22 @@ input[tupe="text"] {
 	color:#000;
 }
 /* Dashboard menu */
-.list-group-dark .list-group-item {
+.list-group-transparent .list-group-item {
 	background:#343a40;
 	padding:0.25rem 1.25rem;
 }
-.list-group-dark .list-group-item a {
-	color:#ffffff80;
+.list-group-transparent .list-group-item a {
+	color:#b8c7ce;
 }
 /*Collapse icon */
 [data-toggle="collapse"] .fa.collapse-icon:before {   
+	content: "\f0da";
+	position:absolute;
+	right:5px;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+[data-toggle="collapse"].active:not(.collapsed) .fa.collapse-icon:before, [data-toggle="collapse"][aria-expanded="true"] .fa.collapse-icon:before {   
 	content: "\f0d7";
 	position:absolute;
 	right:5px;
@@ -70,23 +83,20 @@ input[tupe="text"] {
 	transform: translate(0, -50%);
 }
 
-[data-toggle="collapse"].collapsed .fa.collapse-icon:before {
-	content: "\f0da";
-	position:absolute;
-	right:5px;
-	top: 50%;
-	transform: translate(0, -50%);
-}
 /*Collapse icon position*/
 #left-sidebar .nav-link {
 	position:relative;
+	color:#b8c7ce;
+}
+#left-sidebar a:hover {
+	color:#FFF;
 }
 #left-sidebar .navbar-nav {
 	width:100%;
 }
 /* Dashboard border */
 #left-sidebar .nav-item:not(:first-child) {
-	border-top:1px solid #303030;
+	border-top:1px solid #303233;
 }
 /* Transition */
 .hover-move {
@@ -129,6 +139,29 @@ input[tupe="text"] {
 .size-30 {
 	font-size:30px;
 	font-weight:700;
+}
+/* left sidebar active style */
+#left-sidebar .list-group-item {
+	border:none;
+}
+#left-sidebar .list-group-item.active>a {
+	color:#FFF;
+}
+#left-sidebar-navbar>ul>li>a {
+	padding-left:15px;
+	padding-right:15px;
+}
+#left-sidebar-navbar>ul>li.active {
+	background-color:#2c3b41;
+}
+#left-sidebar-navbar>ul>li.active>a {
+	border-left:3px solid #4e73df;
+}
+ul.list-group-transparent>li.list-group-item {
+	background-color: transparent;
+	border-top: none;
+	border-radius: 0;
+	color: #b8c7ce;
 }
 /*Navbar mobile expand classes */
 .expand-on [data-toggle="collapse"]:first-child {
@@ -206,3 +239,148 @@ input[tupe="text"] {
 .vp-h-55-md { /*height minus 55px;*/
 	overflow-y:scroll;
 }
+/* Content Style */
+#theme-content {
+	background: #ecf0f5;
+}
+/* Breadcum style */
+.p-r {
+	position:relative;
+}
+ol.breadcrumb {
+    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 7px 5px;
+    top: 0px;
+    right: 10px;
+    border-radius: 2px;
+	position:absolute;
+}
+ol.breadcrumb>li {
+	color:#777;
+}
+ol.breadcrumb>li>a {
+	color:#444;
+}
+ol.breadcrumb>li>a:hover {
+	color:#000;
+}
+ol.breadcrumb>li:not(:first-child):before {
+	content: ">";
+	display:inline-block;
+	width:10px;
+	margin:0 5px;
+	color:#0005;
+}
+nav small {
+	font-size:14px;
+}
+/* Responsive table with sorting */
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+	bottom: .5em;
+}
+/* Admin LTE edit */
+.content-header {
+	padding: 15px 0;
+}
+.content-header small {
+	font-size:15px;
+	color:#888;
+}
+/* Fancy Tabs starts; prepared by rejauldu@gmail.com */
+.fancy-tab li {
+	text-align: center;
+	padding:15px 0;
+	background-color: #eee;
+	top:15px;
+	position:relative;
+	border:1px solid #DDD;
+}
+.fancy-tab li.active {
+	top:0;
+	transition:top .2s;
+	border:transparent;
+	background: #fff;
+	box-shadow: 1px 1px 0 1px #fff, 0 0px 0 1px #ddd, -1px 1px 0 0px #ddd inset;
+	padding-bottom:30px;
+}
+.fancy-tab li a {
+	font-family: 'Source Sans Pro';
+	font-weight:300;
+	transition:.2s;
+	color:#333;
+}
+
+.fancy-tab li .fa {
+	width:100%;
+	color:#666;
+}
+.fancy-tab li.active .fa {
+	color: #cfb87c;
+}
+.fancy-tab-content {
+	border-color: transparent;
+	box-shadow: 0 -2px 0 -1px #fff, 0 0 0 1px #ddd;
+	padding: 30px 15px 15px;
+	position:relative;
+	background-color:#fff;
+}
+.fancy-tab li:hover {
+	background-color:#f9f9f9;
+}
+.fancy-tab .arrow-down {
+	display:none;
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 22px solid #ddd;
+	position: absolute;
+	top: -1px;
+	left: calc(50% - 20px);
+}
+.fancy-tab .arrow-down-inner {
+	width: 0;
+	height: 0;
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;
+	border-top: 12px solid #fff;
+	position: absolute;
+	top: -22px;
+	left: -18px;
+}
+.fancy-tab li.active .arrow-down {
+	display: block;
+}
+/*Fixing*/
+.nav-pills.fancy-tab>li.active>a, .nav-pills.fancy-tab>li.active>a:hover, .nav-pills.fancy-tab>li.active>a:focus {
+	border-top-color:transparent;
+}
+.nav.fancy-tab>li>a:hover, .nav.fancy-tab>li>a:active, .nav.fancy-tab>li>a:focus {
+	background:transparent;
+}
+.nav-tabs.fancy-tab .nav-item.show .nav-link, .nav-tabs.fancy-tab .nav-link, .nav-tabs.fancy-tab .nav-item.show .nav-link:hover, .nav-tabs.fancy-tab .nav-item.show .nav-link:focus {
+	background-color: transparent;
+	border-color: transparent;
+}
+@media screen and (min-width: 768px) {
+	.fancy-tab li a {
+		font-size:1.65em;
+	}
+	.fancy-tab li .fa {
+		font-size: 40px;
+		padding: 15px 0 5px;
+	}
+}
+/* Fancy Tabs ends */

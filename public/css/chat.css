@@ -52,9 +52,8 @@ img{ max-width:100%;}
   margin: 0;
   padding: 18px 16px 10px;
 }
-.inbox_chat {
-	padding-top:55px;
-	height: 100vh;
+.chat-inbox {
+	height: 92vh;
 	overflow-y: scroll;
 }
 
@@ -126,7 +125,7 @@ img{ max-width:100%;}
   top: 11px;
   width: 33px;
 }
-.msg_history {
+.chat-history {
   height: 92vh;
   overflow-y: auto;
 }

@@ -16,7 +16,7 @@ class Moderator
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->role == 1) {
+        if (Auth::user() &&  Auth::user()->role_id == 2) {
             return $next($request);
 		 }
 

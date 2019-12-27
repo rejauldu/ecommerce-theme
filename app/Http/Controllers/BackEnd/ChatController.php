@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\BackEnd;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Chat;
+use App\User;
+use Auth;
 
 class ChatController extends Controller
 {
@@ -12,9 +15,12 @@ class ChatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function chat()
+    public function index()
     {
-        return view('back-end.chat');
+		$user = Auth::user();
+		$chat = Chat::where('sender_id', $user->id)->orWhere('receiver_id', $user->id)->latest()->first();
+		$partner_id = $user->id == $chat->sender_id?$chat->receiver_id:$chat->sender_id;
+		return redirect(route('chats.show', $partner_id));
     }
 
     /**
@@ -35,7 +41,8 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		broadcast(new \App\Events\PrivateChatEvent($request->all()))->toOthers();
+		return 'Success';
     }
 
     /**
@@ -46,7 +53,19 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        //
+		$user = User::select('id', 'name')->where('id', Auth::user()->id)->first();
+		$partner = User::select('id', 'name')->where('id', $id)->first();
+        $messages = Chat::select('type', 'message', 'sender_id', 'receiver_id')
+			->where(function($p) use($id, $user) {
+				$p->where('sender_id', $id)
+				->where('receiver_id', $user->id);
+			})
+			->orWhere(function($q) use($id, $user) {
+				$q->where('sender_id', $user->id)
+				->where('receiver_id', $id);
+			})->get();
+		
+        return view('backend.chats.chat', compact('messages', 'user', 'partner'));
     }
 
     /**
@@ -81,5 +100,10 @@ class ChatController extends Controller
     public function destroy($id)
     {
         //
+    }
+	// Chat page
+	public function chat()
+    {
+        return view('backend.chats.chat');
     }
 }

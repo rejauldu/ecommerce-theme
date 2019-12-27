@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\BackEnd;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
 		$users = User::all();
-        return view('back-end.user.index');
+        return view('backend.users.index');
     }
 
     /**
@@ -27,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('back-end.email.create');
+        return view('backend.emails.create');
     }
 
     /**
@@ -36,7 +37,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         //
     }
@@ -51,7 +52,7 @@ class UserController extends Controller
     {
 		$id = $id;
 		$user = User::find($id);
-        return view('back-end.user.show', compact('user'));
+        return view('backend.users.show', compact('user'));
     }
 
     /**
@@ -65,7 +66,7 @@ class UserController extends Controller
         $id = $id;
 		$user = User::find($id);
 		//dd($user);
-        return view('back-end.user.edit', compact('user'));
+        return view('backend.users.edit', compact('user'));
     }
 
     /**
@@ -75,14 +76,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-		$request->validate([
-			'photo' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			'email' => 'sometimes|required|email',
-			'password_old' => 'sometimes|required',
-			'password' => ['sometimes', 'required', 'min:6', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%@]).*$/', 'different:password_old', 'confirmed']
-		]);
 		$file = $request->file('photo');
 		if($file) {
 			$destination_path = 'assets/profile';

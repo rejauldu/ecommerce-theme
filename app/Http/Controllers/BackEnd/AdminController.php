@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\BackEnd;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class AdminController extends Controller
      */
     public function users()
     {
-        return view('back-end.admin.users');
+        return view('backend.admins.users');
     }
 
     /**

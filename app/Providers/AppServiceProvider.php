@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
 		Blade::directive('admin', function () {
 			$isAuth = 'false';
 			// check if the user authenticated is teacher
-			if (Auth::user() && Auth::user()->role== 2) {
+			if (Auth::user() && Auth::user()->role_id == 3) {
 				$isAuth = 'true';
 			}
 			
@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
 		Blade::directive('moderator', function () {
 			$isAuth = 'false';
 			// check if the user authenticated is teacher
-			if (Auth::user() && Auth::user()->role== 1) {
+			if (Auth::user() && Auth::user()->role_id == 2) {
 				$isAuth = 'true';
 			}
 			
@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
 		Blade::directive('user', function () {
 			$isAuth = 'false';
 			// check if the user authenticated is teacher
-			if (Auth::user() && Auth::user()->role== 0) {
+			if (Auth::user() && Auth::user()->role_id == 1) {
 				$isAuth = 'true';
 			}
 			

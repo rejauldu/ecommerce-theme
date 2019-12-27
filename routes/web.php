@@ -14,17 +14,21 @@
 Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 
 Auth::routes(['verify' => true]);
-
+Route::get('contact-us', 'Backend\ContactUsController@create')->name('contact-us.create');
+Route::post('contact-us', 'Backend\ContactUsController@store')->name('contact-us.store');
+Route::resource('chats', 'Backend\ChatController');
 //Routes for dashboard
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/dashboard', 'BackEnd\DashboardController@dashboard')->name('dashboard');
-	Route::get('/chat', 'BackEnd\ChatController@chat')->name('chat');
-	Route::resource('users', 'BackEnd\UserController');
+    Route::get('/dashboard', 'Backend\DashboardController@dashboard')->name('dashboard');
+	Route::get('/chat', 'Backend\ChatController@chat')->name('chats.chat');
+	Route::resource('users', 'Backend\UserController');
+	
 });
 Route::group(['middleware' => ['admin']], function () {
-	Route::get('/users', 'BackEnd\AdminController@users')->name('users');
-	Route::resource('emails', 'BackEnd\EmailController');
+	Route::resource('user-managements', 'Backend\UserManagementController');
+	Route::resource('notifications', 'Backend\NotificationController');
 	Route::get('/clear-cache', function() {
 		Artisan::call('cache:clear');
+		return redirect('/dashboard');
 	});
 });
