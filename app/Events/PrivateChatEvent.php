@@ -35,8 +35,8 @@ class PrivateChatEvent implements ShouldBroadcastNow
     public function broadcastOn()
     {
 		$user = Auth::user();
-		$ids = $user->id > $this->message['receiver_id'] ? $this->message['receiver_id'].'.'.$user->id : $user->id.'.'.$this->message['receiver_id'];
-        return new PrivateChannel('chat.'.$ids);
+		if((int) $user->id === (int) $this->message['sender_id'])
+			return new PrivateChannel('Chat.'.$this->message['receiver_id']);
     }
 	/*
 	* Defines channel name

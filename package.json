@@ -24,6 +24,9 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^1.2.26",
+        "@fortawesome/free-solid-svg-icons": "^5.12.0",
+        "@fortawesome/vue-fontawesome": "^0.1.9",
         "laravel-echo": "^1.6.1",
         "lg-autoplay": "^1.0.4",
         "lg-fullscreen": "^1.1.0",

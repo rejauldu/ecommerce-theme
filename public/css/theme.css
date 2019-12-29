@@ -59,6 +59,9 @@ input {
 input[tupe="text"] {
 	color:#000;
 }
+.text-small {
+	font-size:8px;
+}
 /* Dashboard menu */
 .list-group-transparent .list-group-item {
 	background:#343a40;

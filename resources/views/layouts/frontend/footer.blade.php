@@ -4,7 +4,7 @@
 		</div> <!--end of content-fluid-->
 	</div><!--end of #app-->
 	<!-- Scripts -->
-	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ asset('js/app.js') }}?{{ time() }}"></script>
 	<!-- Smooth Scroll -->
 	<!-- Data aos -->
 	<script src="https://narayanganjclubltd.com/js/aos.js"></script>

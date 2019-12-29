@@ -16,13 +16,13 @@ Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 Auth::routes(['verify' => true]);
 Route::get('contact-us', 'Backend\ContactUsController@create')->name('contact-us.create');
 Route::post('contact-us', 'Backend\ContactUsController@store')->name('contact-us.store');
-Route::resource('chats', 'Backend\ChatController');
+
 //Routes for dashboard
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'Backend\DashboardController@dashboard')->name('dashboard');
 	Route::get('/chat', 'Backend\ChatController@chat')->name('chats.chat');
 	Route::resource('users', 'Backend\UserController');
-	
+	Route::resource('chats', 'Backend\ChatController');
 });
 Route::group(['middleware' => ['admin']], function () {
 	Route::resource('user-managements', 'Backend\UserManagementController');

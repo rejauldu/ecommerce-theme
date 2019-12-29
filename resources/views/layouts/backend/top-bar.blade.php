@@ -53,37 +53,14 @@
 					</li>
 					<div class="topbar-divider d-none d-sm-block"></div>
 					<!-- Nav Item - Messages -->
-					<li class="nav-item dropdown mx-1">
-						<a class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown">
+					<li class="nav-item mx-1">
+						<a class="nav-link text-white" href="/chats">
 							<i class="fa fa-envelope"></i>
 							<!-- Counter - Messages -->
-							<span class="badge badge-danger badge-counter">7</span>
+							@auth
+							<chat-counter v-bind:user="{{ Auth::user() }}" v-bind:partner="{{ $partner ?? '{}' }}" v-bind:total_unread_message="{{ $total_unread_message ?? 0 }}"></chat-counter>
+							@endauth
 						</a>
-						<!-- Dropdown - Messages -->
-						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in position-absolute">
-							<h6 class="dropdown-header">{{ __('Message Center') }}</h6>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle" src="https://1.bp.blogspot.com/-AjSuS7Fj2OM/XQNd9msZPlI/AAAAAAAABGQ/DWim3MFS_gco5Hb671D1BLNkrV152gKGgCK4BGAYYCw/s80/IMG_0328.JPG" alt="">
-									<div class="status-indicator bg-success"></div>
-								</div>
-								<div class="font-weight-bold">
-									<div class="text-truncate">{{ __('Hi there! I am wondering if you can help me with a problem Ive been having.') }}</div>
-									<div class="small text-gray-500">Emily Fowler · 58m</div>
-								</div>
-							</a>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="dropdown-list-image mr-3">
-									<img class="rounded-circle" src="https://1.bp.blogspot.com/-AjSuS7Fj2OM/XQNd9msZPlI/AAAAAAAABGQ/DWim3MFS_gco5Hb671D1BLNkrV152gKGgCK4BGAYYCw/s80/IMG_0328.JPG" alt="">
-									<div class="status-indicator bg-success"></div>
-								</div>
-								<div class="font-weight-bold">
-									<div class="text-truncate">{{ __('Hi there! I am wondering if you can help me.') }}</div>
-									<div class="small text-gray-500">Emily Fowler · 58m</div>
-								</div>
-							</a>
-							<a class="dropdown-item text-center small text-gray-500" href="#">{{ __('Read More Messages') }}</a>
-						</div>
 					</li>
 					<div class="topbar-divider d-none d-sm-block"></div>
 					<!-- Nav Item - User Information -->
