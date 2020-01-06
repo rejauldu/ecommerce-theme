@@ -27,7 +27,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
+	
+	protected $dates = ['updated_at', 'created_at'];
+	
     /**
      * The attributes that should be cast to native types.
      *
@@ -36,6 +38,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+	
+	public function getDateAttribute() {
+		return $this->created_at->format('M Y');
+	}
+	public function getTimeAttribute() {
+		return $this->updated_at->format('i:H');
+	}
 	public function role() {
 		return $this->belongsTo('App\Role');
 	}

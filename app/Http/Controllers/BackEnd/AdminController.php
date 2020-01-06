@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class AdminController extends Controller
 {
@@ -14,7 +15,8 @@ class AdminController extends Controller
      */
     public function users()
     {
-        return view('backend.admins.users');
+		$user = Auth::user();
+        return view('backend.admins.users', compact('user'));
     }
 
     /**

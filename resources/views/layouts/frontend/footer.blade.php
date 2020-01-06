@@ -1,6 +1,12 @@
+			@auth
 			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 				@csrf
 			</form>
+			<form id="delete-form" action="#" method="POST" style="display: none;">
+				@csrf
+				@delete
+			</form>
+			@endauth
 		</div> <!--end of content-fluid-->
 	</div><!--end of #app-->
 	<!-- Scripts -->

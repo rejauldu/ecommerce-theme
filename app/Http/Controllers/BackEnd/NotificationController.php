@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Http\Requests\NotificationRequest;
 use App\Notifications\EmailNotification;
+use Auth;
 
 class NotificationController extends Controller
 {
@@ -17,7 +18,8 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        return view('backend.notifications.index');
+		$user = Auth::user();
+        return view('backend.notifications.index', compact('user'));
     }
 
     /**
@@ -27,7 +29,8 @@ class NotificationController extends Controller
      */
     public function create()
     {
-        return view('backend.notifications.create');
+		$user = Auth::user();
+        return view('backend.notifications.create', compact('user'));
     }
 
     /**

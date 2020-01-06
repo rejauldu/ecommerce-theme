@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class DashBoardController extends Controller
 {
@@ -14,7 +15,8 @@ class DashBoardController extends Controller
      */
     public function dashboard()
     {
-        return view('backend.dashboard');
+		$user = Auth::user();
+        return view('backend.dashboard', compact('user'));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class UserController extends Controller
 {
@@ -18,7 +19,8 @@ class UserController extends Controller
     public function index()
     {
 		$users = User::all();
-        return view('backend.users.index');
+		$user = Auth::user();
+        return view('backend.users.index', compact('user'));
     }
 
     /**
@@ -28,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.emails.create');
+		$user = Auth::user();
+        return view('backend.emails.create', compact('user'));
     }
 
     /**

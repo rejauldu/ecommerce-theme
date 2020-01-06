@@ -7,6 +7,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class UserManagementController extends Controller
 {
@@ -18,7 +19,8 @@ class UserManagementController extends Controller
     public function index()
     {
 		$users = User::with('role')->get();
-        return view('backend.user_managements.index', compact('users'));
+		$user = Auth::user();
+        return view('backend.user_managements.index', compact('user', 'users'));
     }
 
     /**

@@ -1,86 +1,74 @@
-<div class="row">
-	<div class="d-none d-md-flex col-md-12 navbar navbar-theme fixed-top navbar-inverse">
-		<div class="row">
-			<div class="col-md-3 col-lg-2">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link text-white py-0" href="{{ url('/') }}"><image src="{{ asset('assets/logo.jpg') }}" id="logo" /></a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-9 col-lg-10">
-				<!-- Topbar Navbar -->
-				<ul class="navbar-nav navbar-expand-md ml-auto py-0 flex-end">
-					@guest
-						<li class="nav-item">
-							<a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+<header class="main-header">
+	<!-- Logo -->
+	<a href="{{url('/utadmin')}}" class="logo">
+		<!-- mini logo for sidebar mini 50x50 pixels -->
+		<span class="logo-mini"><b>U</b>T</span>
+		<!-- logo for regular state and mobile devices -->
+		<span class="logo-lg">{{ config('app.name') }}</span>
+	</a>
+	<!-- Header Navbar: style can be found in header.less -->
+	<nav class="navbar navbar-expand-sm navbar-static-top theme-nav">
+		<!-- Sidebar toggle button-->
+		<a href="#" class="nav-link py-0 sidebar-toggle py-0" data-toggle="push-menu" role="button">
+			<span class="sr-only">Toggle navigation</span>
+		</a>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav ml-auto">
+				<!-- Messages: style can be found in dropdown.less-->
+				<li class="nav-item messages-menu">
+					<a href="{{ route('chats.index') }}" class="nav-link py-0">
+						<i class="fa fa-envelope-o"></i>
+						@auth
+						<chat-counter v-bind:user="{{ $user ?? '' }}" v-bind:partner="{{ $partner ?? '{}' }}" v-bind:total_unread_message="{{ $total_unread_message ?? 0 }}"></chat-counter>
+						@endauth
+					</a>
+				</li>
+				<!-- Notifications: style can be found in dropdown.less -->
+				<li class="nav-item notifications-menu">
+					<a href="#" class="nav-link py-0">
+						<i class="fa fa-bell-o"></i>
+						<span class="badge badge-warning">10</span>
+					</a>
+				</li>
+				<!-- Tasks: style can be found in dropdown.less -->
+				<li class="nav-item tasks-menu">
+					<a href="#" class="nav-link py-0">
+						<i class="fa fa-flag-o"></i>
+						<span class="badge badge-danger">9</span>
+					</a>
+				</li>
+				<!-- User Account: style can be found in dropdown.less -->
+				<li class="nav-item dropdown user user-menu">
+					<a href="#" class="nav-link py-0 dropdown-toggle" data-toggle="dropdown">
+						<img src="/assets/profile/{{ $user->photo }}" class="user-image" alt="User Image">
+						<span class="hidden-xs">{{ $user->name ?? '' }}</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<!-- User image -->
+						<li class="user-header">
+							<img src="/assets/logo.png" class="img-circle" alt="User Image">
+							<p>
+								{{ $user->name ?? '' }}
+								<small>{{ __('Since') }} {{ $user->created_at->date ?? '' }}</small>
+							</p>
 						</li>
-						<div class="topbar-divider d-none d-sm-block"></div>
-						@if (Route::has('register'))
-							<li class="nav-item">
-								<a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
-							</li>
-						@endif
-					@else
-					<div class="topbar-divider d-none d-sm-block"></div>
-					<li>
-						
-					</li>
-					<!-- Nav Item - Alerts -->
-					<li class="nav-item dropdown no-arrow mx-1 transition">
-						<a class="nav-link dropdown-toggle text-white" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fa fa-bell"></i>
-							<!-- Counter - Alerts -->
-							<span class="badge badge-danger badge-counter">3+</span>
-						</a>
-						<!-- Dropdown - Alerts -->
-						<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in position-absolute" aria-labelledby="alertsDropdown">
-							<h6 class="dropdown-header">{{ __('Alerts Center') }}</h6>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3"><div class="icon-circle bg-primary"><i class="fas fa-file-alt text-white"></i></div></div>
-								<div><div class="small text-gray-500">{{ __('December 12, 2019') }}</div><span class="font-weight-bold">{{ __('A new monthly report is ready to download!') }}</span></div>
-							</a>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3"><div class="icon-circle bg-primary"><i class="fas fa-file-alt text-white"></i></div></div>
-								<div><div class="small text-gray-500">{{ __('December 12, 2019') }}</div><span class="font-weight-bold">{{ __('A new monthly report is ready to download!') }}</span></div>
-							</a>
-							<a class="dropdown-item d-flex align-items-center" href="#">
-								<div class="mr-3"><div class="icon-circle bg-primary"><i class="fas fa-file-alt text-white"></i></div></div>
-								<div><div class="small text-gray-500">{{ __('December 12, 2019') }}</div><span class="font-weight-bold">{{ __('A new monthly report is ready to download!') }}</span></div>
-							</a>
-							<a class="dropdown-item text-center small text-gray-500" href="#">{{ __('Show All Alerts') }}</a>
-						</div>
-					</li>
-					<div class="topbar-divider d-none d-sm-block"></div>
-					<!-- Nav Item - Messages -->
-					<li class="nav-item mx-1">
-						<a class="nav-link text-white" href="/chats">
-							<i class="fa fa-envelope"></i>
-							<!-- Counter - Messages -->
-							@auth
-							<chat-counter v-bind:user="{{ Auth::user() }}" v-bind:partner="{{ $partner ?? '{}' }}" v-bind:total_unread_message="{{ $total_unread_message ?? 0 }}"></chat-counter>
-							@endauth
-						</a>
-					</li>
-					<div class="topbar-divider d-none d-sm-block"></div>
-					<!-- Nav Item - User Information -->
-					<li class="nav-item dropdown no-arrow">
-						<a class="nav-link dropdown-toggle py-0 text-white" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="mr-2 d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-							<img class="img-profile rounded-circle" src="{{ asset('assets/profile') }}/{{ Auth::user()->photo }}">
-						</a>
-						<!-- Dropdown - User Information -->
-						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in position-absolute" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}"><i class="fa fa-user mr-2 text-gray-400"></i>{{ __('Profile') }}</a>
-							<a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}"><i class="fa fa-cogs mr-2 text-gray-400"></i>{{ __('Settings') }}</a>
-							<a class="dropdown-item" href="#"><i class="fa fa-list mr-2 text-gray-400"></i>{{ __('Activity Log') }}</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out mr-2"></i>{{ __('Logout') }}</a>
-						</div>
-					</li>
-					@endguest
-				</ul>
-			</div>
+						<!-- Menu Body -->
+						<!-- Menu Footer-->
+						<li class="user-footer">
+							<div class="pull-left">
+								<a href="{{ route('users.show', $user->id ?? '') }}" class="btn btn-default btn-flat">{{ __('Profile') }}</a>
+							</div>
+							<div class="pull-right">
+								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">{{ __('Logout') }}</a>
+							</div>
+						</li>
+					</ul>
+				</li>
+				<!-- Control Sidebar Toggle Button -->
+				<li class="nav-item ">
+					<a href="{{ route('users.edit', $user->id ?? '') }}" data-toggle="nav-link py-0 control-sidebar"><i class="fa fa-gears"></i></a>
+				</li>
+			</ul>
 		</div>
-	</div>
-</div>
+	</nav>
+</header>

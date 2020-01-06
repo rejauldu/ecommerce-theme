@@ -10,20 +10,25 @@
 			</div>
 		</div>
 	</div>
-	<div v-for="message in mutable_message_list" class="chat_list col-12" :class="{ 'active_chat': getPartner(message).id == partner.id}" :onclick="'location.href=\'/chats/'+getPartner(message).id+'\''">
+	<div v-for="message in mutable_message_list" class="chat_list col-12" :class="{ 'active_chat': getPartnerId(message) == partner.id}" @click="chatListClick" :partner="getPartner(message).id">
 		<div class="chat_people">
 			<div class="chat_img"> <img :src="'/assets/profile/'+getPartner(message).photo" alt="sunil"> <i class="fa fa-circle" :class="{'text-success': isOnline(message)}"></i></div>
 			<div class="chat_ib">
 				<h5>{{ getPartner(message).name }} <span class="chat_date">{{ convertToDate(message.created_at) }}</span></h5>
 				<p>{{ message.message }}</p>
+				<popover :partner_id="getPartnerId(message)"></popover>
 			</div>
 		</div>
 	</div>
 </div>
 </template>
 <script>
+import popover from './PopoverComponent.vue'
 
 export default {
+	components: {
+		popover
+	},
 	data () {
 		return {
 			mutable_message_list: this.message_list,
@@ -80,6 +85,21 @@ export default {
 			if(response.sender_id == this.user.id)
 				return response.receiver_id;
 			return response.sender_id;
+		},
+		chatListClick: function(e) {
+			let popover = e.target.getAttribute('data-toggle');
+			let baseUrl = document.head.querySelector("[name='base-url']").getAttribute('content');
+			if(popover !== "popover") {
+				window.location.replace(baseUrl+'/chats/'+e.currentTarget.getAttribute('partner'));
+			} else {
+			
+			}
+		},
+		chatDelete: function(partner) {
+			console.log(partner);
+			document.getElementById('delete-form').action = '/chats/'+partner;
+			document.getElementById('delete-form').submit();
+			console.log(partner);
 		}
 	},
 	computed: {

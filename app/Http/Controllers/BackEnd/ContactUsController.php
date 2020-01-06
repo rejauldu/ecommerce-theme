@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Chat;
+use Auth;
 
 class ContactUsController extends Controller
 {
@@ -16,7 +17,8 @@ class ContactUsController extends Controller
     public function index()
     {
 		$messages = Chat::all();
-        return view('backend.chats.index', compact('messages'));
+		$user = Auth::user();
+        return view('backend.chats.index', compact('user', 'messages'));
     }
 
     /**

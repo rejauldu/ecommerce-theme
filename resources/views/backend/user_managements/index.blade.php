@@ -1,67 +1,71 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<section class="content-header">
-	<h3>Management <small>Users</small></h3>
-	<ol class="breadcrumb">
-		<li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-		<li class="active">User Management</li>
-	</ol>
-</section>
-@if(session()->has('message'))
-<div class="alert alert-warning">
-	{{ session()->get('message') }}
-</div>
-@endif
-<div class="row">
-	<div class="col-12">
-		<div class="box box-info">
-			<div class="box-header with-border">
-				<h3 class="box-title"><i class="fa fa-users mr-1"></i> {{ __('All Users') }}</h3>
-				<div class="box-tools float-right">
-					<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-					</button>
-					<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+<div class="content-wrapper">
+	<div class="container-fluid">
+		<section class="content-header">
+			<h3>Management <small>Users</small></h3>
+			<ol class="breadcrumb">
+				<li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+				<li class="active">User Management</li>
+			</ol>
+		</section>
+		@if(session()->has('message'))
+		<div class="alert alert-warning">
+			{{ session()->get('message') }}
+		</div>
+		@endif
+		<div class="row">
+			<div class="col-12">
+				<div class="box box-info">
+					<div class="box-header with-border">
+						<h3 class="box-title"><i class="fa fa-users mr-1"></i> {{ __('All Users') }}</h3>
+						<div class="box-tools float-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						</div>
+					</div>
+					<div class="box-body">
+						<table id="dataTables" class="display nowrap" cellspacing="0" width="100%">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Photo</th>
+									<th>Role</th>
+									<th>Verification date</th>
+									<th>Update date</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach($users as $u)
+								<tr>
+									<td>{{ $u->id }}</td>
+									<td>{{ $u->name }}</td>
+									<td>{{ $u->email }}</td>
+									<td><img src="{{ asset('/assets/profile/'.$u->photo) }}" width="50" height="50" /></td>
+									<td>{{ $u->role->name }}</td>
+									<td>{{ $u->email_verified_at }}</td>
+									<td>{{ $u->updated_at }}</td>
+								</tr>
+								@endforeach
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Photo</th>
+									<th>Role</th>
+									<th>Verification date</th>
+									<th>Update date</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
 				</div>
-			</div>
-			<div class="box-body">
-				<table id="dataTables" class="display nowrap" cellspacing="0" width="100%">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Photo</th>
-							<th>Role</th>
-							<th>Verification date</th>
-							<th>Update date</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach($users as $user)
-						<tr>
-							<td>{{ $user->id }}</td>
-							<td>{{ $user->name }}</td>
-							<td>{{ $user->email }}</td>
-							<td><img src="{{ asset('/assets/profile/'.$user->photo) }}" width="50" height="50" /></td>
-							<td>{{ $user->role->name }}</td>
-							<td>{{ $user->email_verified_at }}</td>
-							<td>{{ $user->updated_at }}</td>
-						</tr>
-						@endforeach
-					</tbody>
-					<tfoot>
-						<tr>
-							<th>ID</th>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Photo</th>
-							<th>Role</th>
-							<th>Verification date</th>
-							<th>Update date</th>
-						</tr>
-					</tfoot>
-				</table>
 			</div>
 		</div>
 	</div>

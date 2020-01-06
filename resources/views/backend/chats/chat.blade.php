@@ -1,17 +1,21 @@
 @extends('layouts.common')
 
 @section('content')
-@if(session()->has('message'))
-<div class="alert alert-warning">
-	{{ session()->get('message') }}
-</div>
-@endif
-<div class="messaging container">
-	<div class="inbox_msg row">
-		<div class="inbox_people d-none d-md-flex col-md-4">
-			<chat-list v-bind:user="{{ $user }}" v-bind:partner="{{ $partner }}" v-bind:message_list="{{ $message_list }}"></chat-list>
+<div class="content-wrapper">
+	<div class="container-fluid">
+		@if(session()->has('message'))
+		<div class="alert alert-warning">
+			{{ session()->get('message') }}
 		</div>
-		<chat v-bind:user="{{ $user }}" v-bind:partner="{{ $partner }}" v-bind:messages="{{ $messages ?? [] }}"></chat>
+		@endif
+		<div class="messaging container">
+			<div class="inbox_msg row">
+				<div class="inbox_people d-none d-md-flex col-md-4">
+					<chat-list v-bind:user="{{ $user }}" v-bind:partner="{{ $partner }}" v-bind:message_list="{{ $message_list }}"></chat-list>
+				</div>
+				<chat v-bind:user="{{ $user }}" v-bind:partner="{{ $partner }}" v-bind:messages="{{ $messages ?? [] }}"></chat>
+			</div>
+		</div>
 	</div>
 </div>
 @endsection
