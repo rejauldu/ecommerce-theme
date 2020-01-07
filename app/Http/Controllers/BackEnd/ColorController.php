@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Locations;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\Color;
 
-class UpazilaController extends Controller
+class ColorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class UpazilaController extends Controller
      */
     public function index()
     {
-        //
+		$user = Auth::user();
+		$colors = Color::all();
+		return view('backend.colors.index', compact('user', 'colors'));
     }
 
     /**
@@ -24,7 +28,8 @@ class UpazilaController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+		return view('backend.colors.create', compact('user'));
     }
 
     /**
@@ -35,7 +40,9 @@ class UpazilaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$data = $request->except('_token', '_method');
+		Color::find($id)->update($data);
+		return redirect(route('colors.index'))->with('message', 'Color created successfully');
     }
 
     /**
@@ -46,7 +53,9 @@ class UpazilaController extends Controller
      */
     public function show($id)
     {
-        //
+		$user = Auth::user();
+        $color = Color::find($id);
+		return view('backend.colors.show', compact('user', 'color'));
     }
 
     /**
@@ -57,7 +66,9 @@ class UpazilaController extends Controller
      */
     public function edit($id)
     {
-        //
+		$user = Auth::user();
+        $color = Color::find($id);
+		return view('backend.colors.create', compact('user', 'color'));
     }
 
     /**
@@ -69,7 +80,14 @@ class UpazilaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$data = $request->except('_token', '_method');
+		if(!isset($data['is_active'])) {
+			$data['is_active'] = 0;
+		}
+		$color = Color::find($id);
+		$color->update($data);
+		
+		return redirect(route('colors.index'))->with('message', 'Color updated successfully');
     }
 
     /**
@@ -80,6 +98,8 @@ class UpazilaController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$color = Color::find($id);
+		$color->delete();
+		return redirect()->back()->with('message', 'Color has been deleted');
     }
 }

@@ -34,7 +34,9 @@
 							<div class="col-12"><!--left col-->
 								<form action="@if(isset($payment)) {{ route('payments.update', $payment->id) }} @else {{ route('payments.create') }} @endif" method="post" enctype="multipart/form-data">
 									@csrf
-									@method('PUT')
+									@if(isset($payment))
+										@method('PUT')
+									@endif
 									<div class="form-group">
 										<label for="name">Name</label>
 										<input id="name" type="text" class="form-control" name="name" value="{{ $payment->name ?? '' }}" placeholder="First name" title="Enter your first name if any." />

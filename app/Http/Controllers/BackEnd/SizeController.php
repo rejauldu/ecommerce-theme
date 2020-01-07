@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Locations;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\Size;
 
-class UpazilaController extends Controller
+class SizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class UpazilaController extends Controller
      */
     public function index()
     {
-        //
+		$user = Auth::user();
+		$sizes = Size::all();
+		return view('backend.sizes.index', compact('user', 'sizes'));
     }
 
     /**
@@ -24,7 +28,8 @@ class UpazilaController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+		return view('backend.sizes.create', compact('user'));
     }
 
     /**
@@ -35,7 +40,9 @@ class UpazilaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$data = $request->except('_token', '_method');
+		Size::find($id)->update($data);
+		return redirect(route('sizes.index'))->with('message', 'Size created successfully');
     }
 
     /**
@@ -46,7 +53,9 @@ class UpazilaController extends Controller
      */
     public function show($id)
     {
-        //
+		$user = Auth::user();
+        $size = Size::find($id);
+		return view('backend.sizes.show', compact('user', 'size'));
     }
 
     /**
@@ -57,7 +66,9 @@ class UpazilaController extends Controller
      */
     public function edit($id)
     {
-        //
+		$user = Auth::user();
+        $size = Size::find($id);
+		return view('backend.sizes.create', compact('user', 'size'));
     }
 
     /**
@@ -69,7 +80,11 @@ class UpazilaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$data = $request->except('_token', '_method');
+		$size = Size::find($id);
+		$size->update($data);
+		
+		return redirect(route('sizes.index'))->with('message', 'Size updated successfully');
     }
 
     /**
@@ -80,6 +95,8 @@ class UpazilaController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$size = Size::find($id);
+		$size->delete();
+		return redirect()->back()->with('message', 'Size has been deleted');
     }
 }

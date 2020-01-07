@@ -33,4 +33,10 @@ class Union extends Model
         'updated_at' => 'datetime',
 		'created_at' => 'datetime',
     ];
+	public function upazila() {
+		return $this->belongsTo('App\Upazila');
+	}
+	public function regions() {
+		return $this->hasMany('App\Region');
+	}
 }

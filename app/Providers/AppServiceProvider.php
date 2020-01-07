@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\Order;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -66,5 +67,7 @@ class AppServiceProvider extends ServiceProvider
 		Blade::directive('enduser', function () {
 			return "<?php } ?>";
 		});
-    }
+			$countIncomplete = Order::where('order_status_id', 2)->get()->count();
+			view()->share('countIncomplete', $countIncomplete);
+		}
 }

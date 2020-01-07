@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend\Locations;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Locations\Division;
+use App\Locations\District;
 use App\Locations\Region;
 
 class RegionController extends Controller
@@ -29,7 +31,9 @@ class RegionController extends Controller
     public function create()
     {
         $user = Auth::user();
-		return view('backend.locations.regions.create', compact('user'));
+		$divisions = Division::select('id', 'name')->orderBy('name')->get();
+		$districts = District::select('id', 'name', 'division_id')->orderBy('name')->get();
+		return view('backend.locations.regions.create', compact('divisions', 'districts', 'user'));
     }
 
     /**
@@ -41,8 +45,8 @@ class RegionController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token', '_method');
-		Region::find($id)->update($data);
-		return redirect(route('regions.index'))->with('message', 'Supplier created successfully');
+		Region::create($data);
+		return redirect(route('regions.index'))->with('message', 'Region created successfully');
     }
 
     /**
@@ -67,8 +71,10 @@ class RegionController extends Controller
     public function edit($id)
     {
         $user = Auth::user();
+		$divisions = Division::select('id', 'name')->orderBy('name')->get();
+		$districts = District::select('id', 'name', 'division_id')->orderBy('name')->get();
         $region = Region::find($id);
-		return view('backend.locations.regions.create', compact('user', 'region'));
+		return view('backend.locations.regions.create', compact('user', 'region', 'divisions', 'districts'));
     }
 
     /**

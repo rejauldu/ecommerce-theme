@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Locations;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\OrderStatus;
 
-class UpazilaController extends Controller
+class OrderStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class UpazilaController extends Controller
      */
     public function index()
     {
-        //
+		$user = Auth::user();
+		$order_statuses = OrderStatus::all();
+		return view('backend.order_statuses.index', compact('user', 'order_statuses'));
     }
 
     /**
@@ -24,7 +28,8 @@ class UpazilaController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+		return view('backend.order_statuses.create', compact('user'));
     }
 
     /**
@@ -35,7 +40,9 @@ class UpazilaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$data = $request->except('_token', '_method');
+		OrderStatus::find($id)->update($data);
+		return redirect(route('order_statuses.index'))->with('message', 'OrderStatus created successfully');
     }
 
     /**
@@ -46,7 +53,9 @@ class UpazilaController extends Controller
      */
     public function show($id)
     {
-        //
+		$user = Auth::user();
+        $order_status = OrderStatus::find($id);
+		return view('backend.order_statuses.show', compact('user', 'order'));
     }
 
     /**
@@ -57,7 +66,9 @@ class UpazilaController extends Controller
      */
     public function edit($id)
     {
-        //
+		$user = Auth::user();
+        $order_status = OrderStatus::find($id);
+		return view('backend.order_statuses.create', compact('user', 'order'));
     }
 
     /**
@@ -69,7 +80,14 @@ class UpazilaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$data = $request->except('_token', '_method');
+		if(!isset($data['is_active'])) {
+			$data['is_active'] = 0;
+		}
+		$order_status = OrderStatus::find($id);
+		$order->update($data);
+		
+		return redirect(route('order_statuses.index'))->with('message', 'OrderStatus updated successfully');
     }
 
     /**
@@ -80,6 +98,8 @@ class UpazilaController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$order_status = OrderStatus::find($id);
+		$order->delete();
+		return redirect()->back()->with('message', 'OrderStatus has been deleted');
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Locations;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\Product;
 
-class UpazilaController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class UpazilaController extends Controller
      */
     public function index()
     {
-        //
+		$user = Auth::user();
+		$products = Product::all();
+		return view('backend.products.index', compact('user', 'products'));
     }
 
     /**
@@ -24,7 +28,8 @@ class UpazilaController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+		return view('backend.products.create', compact('user'));
     }
 
     /**
@@ -35,7 +40,9 @@ class UpazilaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$data = $request->except('_token', '_method');
+		Product::find($id)->update($data);
+		return redirect(route('products.index'))->with('message', 'Product created successfully');
     }
 
     /**
@@ -46,7 +53,9 @@ class UpazilaController extends Controller
      */
     public function show($id)
     {
-        //
+		$user = Auth::user();
+        $product = Product::find($id);
+		return view('backend.products.show', compact('user', 'product'));
     }
 
     /**
@@ -57,7 +66,9 @@ class UpazilaController extends Controller
      */
     public function edit($id)
     {
-        //
+		$user = Auth::user();
+        $product = Product::find($id);
+		return view('backend.products.create', compact('user', 'product'));
     }
 
     /**
@@ -69,7 +80,14 @@ class UpazilaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$data = $request->except('_token', '_method');
+		if(!isset($data['is_active'])) {
+			$data['is_active'] = 0;
+		}
+		$product = Product::find($id);
+		$product->update($data);
+		
+		return redirect(route('products.index'))->with('message', 'Product updated successfully');
     }
 
     /**
@@ -80,6 +98,8 @@ class UpazilaController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$product = Product::find($id);
+		$product->delete();
+		return redirect()->back()->with('message', 'Product has been deleted');
     }
 }

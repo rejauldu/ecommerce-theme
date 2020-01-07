@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Locations;
+namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\Shipper;
 
-class UpazilaController extends Controller
+class ShipperController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class UpazilaController extends Controller
      */
     public function index()
     {
-        //
+		$user = Auth::user();
+		$shippers = Shipper::all();
+		return view('backend.shippers.index', compact('user', 'shippers'));
     }
 
     /**
@@ -24,7 +28,8 @@ class UpazilaController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+		return view('backend.shippers.create', compact('user'));
     }
 
     /**
@@ -35,7 +40,9 @@ class UpazilaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		$data = $request->except('_token', '_method');
+		Shipper::find($id)->update($data);
+		return redirect(route('shippers.index'))->with('message', 'Shipper created successfully');
     }
 
     /**
@@ -46,7 +53,9 @@ class UpazilaController extends Controller
      */
     public function show($id)
     {
-        //
+		$user = Auth::user();
+        $shipper = Shipper::find($id);
+		return view('backend.shippers.show', compact('user', 'shipper'));
     }
 
     /**
@@ -57,7 +66,9 @@ class UpazilaController extends Controller
      */
     public function edit($id)
     {
-        //
+		$user = Auth::user();
+        $shipper = Shipper::find($id);
+		return view('backend.shippers.create', compact('user', 'shipper'));
     }
 
     /**
@@ -69,7 +80,14 @@ class UpazilaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+		$data = $request->except('_token', '_method');
+		if(!isset($data['is_active'])) {
+			$data['is_active'] = 0;
+		}
+		$shipper = Shipper::find($id);
+		$shipper->update($data);
+		
+		return redirect(route('shippers.index'))->with('message', 'Shipper updated successfully');
     }
 
     /**
@@ -80,6 +98,8 @@ class UpazilaController extends Controller
      */
     public function destroy($id)
     {
-        //
+		$shipper = Shipper::find($id);
+		$shipper->delete();
+		return redirect()->back()->with('message', 'Shipper has been deleted');
     }
 }

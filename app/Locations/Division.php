@@ -33,4 +33,7 @@ class Division extends Model
         'updated_at' => 'datetime',
 		'created_at' => 'datetime',
     ];
+	public function districts() {
+		return $this->hasMany('App\District');
+	}
 }

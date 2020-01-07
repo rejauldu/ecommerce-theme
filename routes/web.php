@@ -35,6 +35,13 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::resource('upazilas', 'Backend\Locations\UpazilaController');
 	Route::resource('unions', 'Backend\Locations\UnionController');
 	Route::resource('regions', 'Backend\Locations\RegionController');
+	Route::resource('sizes', 'Backend\SizeController');
+	Route::resource('colors', 'Backend\ColorController');
+	Route::resource('products', 'Backend\ProductController');
+	Route::resource('order-statuses', 'Backend\OrderStatusController');
+	Route::resource('shippers', 'Backend\ShipperController');
+	Route::resource('orders', 'Backend\OrderController');
+	Route::get('orders-incomplete', 'Backend\OrderController@incomplete')->name('orders.incomplete');
 	Route::get('/clear-cache', function() {
 		Artisan::call('cache:clear');
 		return redirect('/dashboard');

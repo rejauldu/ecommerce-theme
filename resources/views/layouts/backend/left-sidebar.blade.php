@@ -1,3 +1,4 @@
+
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 	<!-- sidebar: style can be found in sidebar.less -->
@@ -15,7 +16,7 @@
 		<!-- search form -->
 		<form action="#" method="get" class="sidebar-form">
 			<div class="input-group">
-				<input type="text" name="q" class="form-control" placeholder="Search...">
+				<input type="text" name="q" class="form-control border-0" placeholder="Search...">
 				<span class="input-group-btn">
 					<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
 				</span>
@@ -52,7 +53,7 @@
 			</li>
 			<li class="treeview {{ Request::is('suppliers*') ? 'active' : '' }}">
 				<a href="#">
-					<i class="fa fa-industry" aria-hidden="true"></i> <span> {{ __('Supplier Management') }}</span>
+					<i class="fa fa-industry" aria-hidden="true"></i> <span> {{ __('Supplier') }}</span>
 					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 				</a>
 				<ul class="treeview-menu">
@@ -92,7 +93,7 @@
 			</li>
 			<li class="treeview {{ Request::is('regions*') ? 'active' : '' }}">
 				<a href="#">
-					<i class="fa fa-address-card" aria-hidden="true"></i> <span>Locations</span>
+					<i class="fa fa-address-card" aria-hidden="true"></i> <span>Location</span>
 					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 				</a>
 				<ul class="treeview-menu">
@@ -100,73 +101,70 @@
 					<li class="{{ Request::is('regions/create') ? 'active' : '' }}"><a href="{{ route('regions.create') }}"><i class="fa fa-circle-o"></i> Add New Region</a></li>
 				</ul>
 			</li>
+			<li class="treeview {{ Request::is('sizes*') ? 'active' : '' }}">
+				<a href="#">
+					<i class="fa fa-arrows-alt" aria-hidden="true"></i> <span>Size</span>
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="{{ Request::is('sizes') ? 'active' : '' }}"><a href="{{ route('sizes.index') }}"><i class="fa fa-circle-o"></i> Manage Size</a></li>
+					<li class="{{ Request::is('sizes/create') ? 'active' : '' }}"><a href="{{ route('sizes.create') }}"><i class="fa fa-circle-o"></i> Add New Size</a></li>
+				</ul>
+			</li>
+			<li class="treeview {{ Request::is('colors*') ? 'active' : '' }}">
+				<a href="#">
+					<i class="fa fa-paint-brush" aria-hidden="true"></i> <span>Color</span>
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="{{ Request::is('colors') ? 'active' : '' }}"><a href="{{ route('colors.index') }}"><i class="fa fa-circle-o"></i> Manage Color</a></li>
+					<li class="{{ Request::is('colors/create') ? 'active' : '' }}"><a href="{{ route('colors.create') }}"><i class="fa fa-circle-o"></i> Add New Color</a></li>
+				</ul>
+			</li>
+			<li class="treeview {{ Request::is('products*') ? 'active' : '' }}">
+				<a href="#">
+					<i class="fa fa-product-hunt" aria-hidden="true"></i> <span>Product</span>
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="{{ Request::is('products') ? 'active' : '' }}"><a href="{{ route('products.index') }}"><i class="fa fa-circle-o"></i> Manage Product</a></li>
+					<li class="{{ Request::is('products/create') ? 'active' : '' }}"><a href="{{ route('products.create') }}"><i class="fa fa-circle-o"></i> Add New Product</a></li>
+				</ul>
+			</li>
+			<li class="treeview {{ Request::is('order-statuses*') ? 'active' : '' }}">
+				<a href="#">
+					<i class="fa fa-info-circle" aria-hidden="true"></i> <span>Order Status</span>
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="{{ Request::is('order-statuses') ? 'active' : '' }}"><a href="{{ route('order-statuses.index') }}"><i class="fa fa-circle-o"></i> Manage Order Status</a></li>
+					<li class="{{ Request::is('order-statuses/create') ? 'active' : '' }}"><a href="{{ route('order-statuses.create') }}"><i class="fa fa-circle-o"></i> Add New Status</a></li>
+				</ul>
+			</li>
+			<li class="treeview {{ Request::is('orders*') ? 'active' : '' }}">
+				<a href="#">
+					<i class="fa  fa-shopping-cart" aria-hidden="true"></i> <span>Order</span>
+					<span class="pull-right-container">
+						<i class="fa fa-angle-left pull-right"></i>
+						<small><span class="badge badge-danger">{{ $countIncomplete ?? 0 }}</span></small>
+					</span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="{{ Request::is('orders-incomplete') ? 'active' : '' }}"><a href="{{ route('orders.incomplete') }}"><i class="fa fa-circle-o"></i>Incomplete Orders <small class="label pull-right"><span class="badge badge-danger">{{ $countIncomplete ?? 0 }}</span></small></a></li>
+					<li class="{{ Request::is('orders') ? 'active' : '' }}"><a href="{{ route('orders.index') }}"><i class="fa fa-circle-o"></i> All Orders</a></li>
+				</ul>
+			</li>
+			<li class="treeview {{ Request::is('shippers*') ? 'active' : '' }}">
+				<a href="#">
+					<i class="fa fa-ship" aria-hidden="true"></i> <span>Shipper</span>
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="{{ Request::is('shippers') ? 'active' : '' }}"><a href="{{ route('shippers.index') }}"><i class="fa fa-circle-o"></i> Manage Shipper</a></li>
+					<li class="{{ Request::is('shippers/create') ? 'active' : '' }}"><a href="{{ route('shippers.create') }}"><i class="fa fa-circle-o"></i> Add New Shipper</a></li>
+				</ul>
+			</li>
 			@endadmin
-			
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-arrows-alt" aria-hidden="true"></i> <span>Manage Size</span>
-					<span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href=""><i class="fa fa-circle-o"></i> Add New Product Size</a></li>
-					<li><a href=""><i class="fa fa-circle-o"></i> Browse Product Sizes</a></li>
-				</ul>
-			</li>
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-product-hunt" aria-hidden="true"></i>
-					<span>Product</span>
-					<span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-					</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="{{url('add-product')}}"><i class="fa fa-circle-o"></i> Add Product</a></li>
-					<li><a href="{{url('/product-manage')}}"><i class="fa fa-circle-o"></i> View All Product</a></li>
-					<li class="treeview">
-						<a href="#"><i class="fa fa-circle-o"></i> Manage Check This Out
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href=""><i class="fa fa-circle-o"></i> Add Product To List</a></li>
-							<li><a href=""><i class="fa fa-circle-o"></i> Switch To Auto/Manual Mode</a></li>
-						</ul>
-					</li>
-					<li><a href="{{url('/update-quantity-search')}}"><i class="fa fa-circle-o"></i> Update Quntity</a></li>
-				</ul>
-			</li>
-			<li class="treeview">
-				<a href="#">
-					<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-					<span>Manage Order</span>
-					<span class="pull-right-container">
-						<i class="fa fa-angle-left pull-right"></i>
-						<small><span class="badge badge-warning">10</span></small>
-					</span>
-				</a>
-				<ul class="treeview-menu">
-					<li><a href="{{url('/utadmin/manage-incomplete-order')}}"><i class="fa fa-circle-o"></i> Incomplete Order 	
-							<span class="pull-right-container">
-								<small class="label pull-right bg-blue">0</small>
-							</span></a></li>
-					<li><a href="{{url('/utadmin/manage-all-order')}}"><i class="fa fa-circle-o"></i> All Order</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">
-					<i class="fa fa-users" aria-hidden="true"></i> <span>User Manage</span>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i class="fa fa-phone" aria-hidden="true"></i> <span>Phone Request</span>
-				</a>
-			</li>
-			<li class="header"></li>
 		</ul>
 	</section>
 	<!-- /.sidebar -->

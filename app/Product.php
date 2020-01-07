@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Locations;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class Product extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Region extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'bn_name', 'division_id', 'district_id', 'upazila_id', 'union_id', 'url', 'updated_at', 'created_at'
+        'sku', 'name', 'description', 'supplier_id', 'category_id', 'quantity_per_unit', 'msrp', 'size_id', 'color_id', 'discount', 'weight', 'stock', 'unit_on_order', 'reorder_level', 'is_available', 'discount_available', 'picture', 'ranking', 'note', 'deleted_at', 'created_at', 'updated_at'
     ];
 
     /**
@@ -33,16 +33,4 @@ class Region extends Model
         'updated_at' => 'datetime',
 		'created_at' => 'datetime',
     ];
-	public function division() {
-		return $this->belongsTo('App\Division');
-	}
-	public function district() {
-		return $this->belongsTo('App\District');
-	}
-	public function upazila() {
-		return $this->belongsTo('App\Upazila');
-	}
-	public function union() {
-		return $this->belongsTo('App\Union');
-	}
 }

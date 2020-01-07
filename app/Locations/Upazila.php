@@ -33,4 +33,10 @@ class Upazila extends Model
         'updated_at' => 'datetime',
 		'created_at' => 'datetime',
     ];
+	public function district() {
+		return $this->belongsTo('App\District');
+	}
+	public function unions() {
+		return $this->hasMany('App\Union');
+	}
 }

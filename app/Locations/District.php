@@ -33,4 +33,10 @@ class District extends Model
         'updated_at' => 'datetime',
 		'created_at' => 'datetime',
     ];
+	public function division() {
+		return $this->belongsTo('App\Division');
+	}
+	public function upzilas() {
+		return $this->hasMany('App\Upazila');
+	}
 }

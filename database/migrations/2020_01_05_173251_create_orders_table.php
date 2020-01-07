@@ -19,7 +19,6 @@ class CreateOrdersTable extends Migration
 			$table->bigInteger('customer_id')->nullable()->unsigned()->index();
 			$table->bigInteger('shipper_id')->nullable()->unsigned()->index();
 			$table->integer('order_status_id')->nullable()->unsigned()->index();
-			$table->integer('payment_amount')->nullable();
 			$table->timestamp('required_at')->nullable();
 			$table->timestamp('shipping_date')->nullable();
 			$table->timestamp('paid_at')->nullable();

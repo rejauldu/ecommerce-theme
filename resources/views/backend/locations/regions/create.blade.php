@@ -32,9 +32,29 @@
 					<div class="box-body">
 						<div class="row pt-2">
 							<div class="col-12"><!--left col-->
-								<form action="@if(isset($region)) {{ route('regions.update', $region->id) }} @else {{ route('regions.create') }} @endif" method="post" enctype="multipart/form-data">
+								<form action="@if(isset($region)) {{ route('regions.update', $region->id) }} @else {{ route('regions.store') }} @endif" method="post" enctype="multipart/form-data">
 									@csrf
-									@method('PUT')
+									@if(isset($region))
+										@method('PUT')
+									@endif
+									<div class="form-group">
+										<label for="division_id">Select Division</label>
+										<select id="division_id" name="division_id" class="custom-select">
+											<option selected>Custom Select Menu</option>
+											<option value="volvo">Volvo</option>
+											<option value="fiat">Fiat</option>
+											<option value="audi">Audi</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="district_id">Select District</label>
+										<select id="district_id" name="district_id" class="custom-select">
+											<option selected>Custom Select Menu</option>
+											<option value="volvo">Volvo</option>
+											<option value="fiat">Fiat</option>
+											<option value="audi">Audi</option>
+										</select>
+									</div>
 									<div class="form-group">
 										<label for="name">Name</label>
 										<input id="name" type="text" class="form-control" name="name" value="{{ $region->name ?? '' }}" placeholder="First name" title="Enter your first name if any." />
@@ -64,4 +84,13 @@
         height: 100
       });
     </script>
+	<script>
+		var divisions = @json($divisions);
+		var districts = @json($districts);
+		@if(isset($region))
+		var selected_division = {{ $region->division_id }};
+		var selected_district = {{ $region->district_id }};
+		@endif
+	</script>
+	<script src="{{ asset('js/location.js') }}?{{ time() }}"></script>
 @endsection

@@ -31,7 +31,7 @@ class CreateProductsTable extends Migration
 			$table->integer('reorder_level');
 			$table->tinyInteger('is_available');
 			$table->tinyInteger('discount_available');
-			$table->string('picture', 30);
+			$table->string('picture', 30)->nullable();
 			$table->integer('ranking');
 			$table->text('note');
 			$table->timestamp('deleted_at');
