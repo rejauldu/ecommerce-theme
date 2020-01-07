@@ -1,6 +1,6 @@
 <header class="main-header">
 	<!-- Logo -->
-	<a href="{{url('/utadmin')}}" class="logo">
+	<a href="{{ route('dashboard') }}" class="logo">
 		<!-- mini logo for sidebar mini 50x50 pixels -->
 		<span class="logo-mini"><b>U</b>T</span>
 		<!-- logo for regular state and mobile devices -->

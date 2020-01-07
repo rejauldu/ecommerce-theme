@@ -39,6 +39,9 @@
 					<li class="{{ Request::route()->getName() == 'users.show' ? 'active' : '' }}"><a href="{{ route('users.show', $user->id) }}"><i class="fa fa-circle-o"></i> {{ __('My Profile') }}</a></li>
 					<li class="{{ Request::route()->getName() == 'users.edit' ? 'active' : '' }}"><a href="{{ route('users.edit', $user->id) }}"><i class="fa fa-circle-o"></i> {{ __('Settings') }}</a></li>
 					<li class=""><a href="#"><i class="fa fa-circle-o"></i> {{ __('Activity Log') }}</a></li>
+					@admin
+					<li class="{{ Request::route()->getName() == 'users-management' ? 'active' : '' }}"><a href="{{ route('users-management') }}"><i class="fa fa-circle-o"></i> {{ __('User Management') }}</a></li>
+					@endadmin
 					<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-circle-o"></i> {{ __('Logout') }}</a></li>
 				</ul>
 			</li>
@@ -46,11 +49,6 @@
 				<a href="{{ route('chats.chat') }}"><i class="fa fa-envelope"></i><span>{{ __('Chat') }}</span></a>
 			</li>
 			@admin
-			<li class="{{ Request::is('user-managements') ? 'active' : '' }}">
-				<a href="{{ route('user-managements.index') }}">
-					<i class="fa fa-users"></i><span>{{ __('User Management') }}</span>
-				</a>
-			</li>
 			<li class="treeview {{ Request::is('suppliers*') ? 'active' : '' }}">
 				<a href="#">
 					<i class="fa fa-industry" aria-hidden="true"></i> <span> {{ __('Supplier') }}</span>

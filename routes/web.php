@@ -25,7 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('chats', 'Backend\ChatController');
 });
 Route::group(['middleware' => ['admin']], function () {
-	Route::resource('user-managements', 'Backend\UserManagementController');
+	Route::get('users-management', 'Backend\UserController@management')->name('users-management');
 	Route::resource('categories', 'Backend\CategoryController');
 	Route::resource('payments', 'Backend\PaymentController');
 	Route::resource('suppliers', 'Backend\SupplierController');

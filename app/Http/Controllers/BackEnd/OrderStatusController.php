@@ -18,7 +18,7 @@ class OrderStatusController extends Controller
     {
 		$user = Auth::user();
 		$order_statuses = OrderStatus::all();
-		return view('backend.order_statuses.index', compact('user', 'order_statuses'));
+		return view('backend.order-statuses.index', compact('user', 'order_statuses'));
     }
 
     /**
@@ -29,7 +29,7 @@ class OrderStatusController extends Controller
     public function create()
     {
         $user = Auth::user();
-		return view('backend.order_statuses.create', compact('user'));
+		return view('backend.order-statuses.create', compact('user'));
     }
 
     /**
@@ -55,7 +55,7 @@ class OrderStatusController extends Controller
     {
 		$user = Auth::user();
         $order_status = OrderStatus::find($id);
-		return view('backend.order_statuses.show', compact('user', 'order'));
+		return view('backend.order-statuses.show', compact('user', 'order'));
     }
 
     /**
@@ -68,7 +68,7 @@ class OrderStatusController extends Controller
     {
 		$user = Auth::user();
         $order_status = OrderStatus::find($id);
-		return view('backend.order_statuses.create', compact('user', 'order'));
+		return view('backend.order-statuses.create', compact('user', 'order'));
     }
 
     /**

@@ -111,4 +111,10 @@ class UserController extends Controller
     {
         //
     }
+	public function management()
+    {
+        $users = User::with('role')->get();
+		$user = Auth::user();
+        return view('backend.user_managements.index', compact('user', 'users'));
+    }
 }
