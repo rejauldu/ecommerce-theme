@@ -16,7 +16,7 @@ class CreateShippersTable extends Migration
         Schema::create('shippers', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('name', 50);
-			$table->string('phone', 20);
+			$table->string('phone', 30);
             $table->timestamps();
         });
     }

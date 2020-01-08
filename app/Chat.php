@@ -12,7 +12,7 @@ class Chat extends Model
      * @var array
      */
     protected $fillable = [
-        'message', 'file_name', 'message_type', 'sender_id', 'receiver_id', 'sent_at', 'viewed_at', 'deleted_by'
+        'message', 'file_name', 'type', 'sender_id', 'receiver_id', 'sent_at', 'viewed_at', 'deleted_by'
     ];
 	
 	protected $dates = ['sent_at', 'viewed_at', 'updated_at', 'created_at'];

@@ -39,7 +39,11 @@
 									@endif
 									<div class="form-group">
 										<label for="name">Name</label>
-										<input id="name" type="text" class="form-control" name="name" value="{{ $order_status->name ?? '' }}" placeholder="First name" title="Enter your first name if any." />
+										<input id="name" type="text" class="form-control" name="name" value="{{ $order_status->name ?? '' }}" placeholder="Status name" title="Enter an order status name" />
+									</div>
+									<div class="form-group">
+										<label for="name">Description</label>
+										<input id="name" type="text" class="form-control" name="description" value="{{ $order_status->description ?? '' }}" placeholder="Description" title="Enter description if any." />
 									</div>
 									<div class="form-group mt-3">
 										<button class="btn btn-success btn-theme" type="submit">{{ __(isset($order_status)?'Update':'Save') }}</button>

@@ -24,7 +24,7 @@ class CreateSuppliersTable extends Migration
 			$table->integer('upazila_id')->nullable()->unsigned()->index();
 			$table->integer('union_id')->nullable()->unsigned()->index();
 			$table->integer('region_id')->nullable()->unsigned()->index();
-			$table->string('phone', 20)->nullable();
+			$table->string('phone', 30)->nullable();
 			$table->string('fax', 50)->nullable();
 			$table->string('email', 50)->nullable();
 			$table->string('website', 60)->nullable();

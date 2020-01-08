@@ -12,7 +12,7 @@ class OrderStatus extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'updated_at', 'created_at'
+        'name', 'description', 'updated_at', 'created_at'
     ];
 
     /**

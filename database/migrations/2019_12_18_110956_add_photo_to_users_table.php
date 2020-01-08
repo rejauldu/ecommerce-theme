@@ -15,7 +15,6 @@ class AddPhotoToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('photo', 300)->after('email')->nullable()->default('avatar.png');
-			$table->tinyInteger('role_id')->after('photo')->nullable()->default(1);
         });
     }
 
@@ -28,7 +27,6 @@ class AddPhotoToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
 			$table->dropColumn('photo');
-			$table->dropColumn('role');
         });
     }
 }

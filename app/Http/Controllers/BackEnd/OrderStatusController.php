@@ -42,7 +42,7 @@ class OrderStatusController extends Controller
     {
 		$data = $request->except('_token', '_method');
 		OrderStatus::find($id)->update($data);
-		return redirect(route('order_statuses.index'))->with('message', 'OrderStatus created successfully');
+		return redirect(route('order-statuses.index'))->with('message', 'Order Status created successfully');
     }
 
     /**
@@ -55,7 +55,7 @@ class OrderStatusController extends Controller
     {
 		$user = Auth::user();
         $order_status = OrderStatus::find($id);
-		return view('backend.order-statuses.show', compact('user', 'order'));
+		return view('backend.order-statuses.show', compact('user', 'order_status'));
     }
 
     /**
@@ -68,7 +68,7 @@ class OrderStatusController extends Controller
     {
 		$user = Auth::user();
         $order_status = OrderStatus::find($id);
-		return view('backend.order-statuses.create', compact('user', 'order'));
+		return view('backend.order-statuses.create', compact('user', 'order_status'));
     }
 
     /**
@@ -81,13 +81,10 @@ class OrderStatusController extends Controller
     public function update(Request $request, $id)
     {
 		$data = $request->except('_token', '_method');
-		if(!isset($data['is_active'])) {
-			$data['is_active'] = 0;
-		}
 		$order_status = OrderStatus::find($id);
-		$order->update($data);
+		$order_status->update($data);
 		
-		return redirect(route('order_statuses.index'))->with('message', 'OrderStatus updated successfully');
+		return redirect(route('order-statuses.index'))->with('message', 'OrderStatus updated successfully');
     }
 
     /**
@@ -99,7 +96,7 @@ class OrderStatusController extends Controller
     public function destroy($id)
     {
 		$order_status = OrderStatus::find($id);
-		$order->delete();
+		$order_status->delete();
 		return redirect()->back()->with('message', 'OrderStatus has been deleted');
     }
 }

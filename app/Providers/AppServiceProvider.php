@@ -67,7 +67,10 @@ class AppServiceProvider extends ServiceProvider
 		Blade::directive('enduser', function () {
 			return "<?php } ?>";
 		});
+		//Incomplete order counter for theme
+		if (\Schema::hasTable('orders')) {
 			$countIncomplete = Order::where('order_status_id', 2)->get()->count();
 			view()->share('countIncomplete', $countIncomplete);
 		}
+	}
 }
