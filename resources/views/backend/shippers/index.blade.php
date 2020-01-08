@@ -1,15 +1,15 @@
 @extends('layouts.dashboard')
 @section('title')
-{{ __('All Divisions') }}
+{{ __('All Shippers') }}
 @endsection
 @section('content')
 <div class="content-wrapper">
 	<div class="container-fluid">
 		<section class="content-header">
-			<h3>Division <small>all</small></h3>
+			<h3>Shipper <small>all</small></h3>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-				<li class="active">Divisions</li>
+				<li class="active">Shippers</li>
 			</ol>
 		</section>
 		@if(session()->has('message'))
@@ -21,7 +21,7 @@
 			<div class="col-12">
 				<div class="box box-info">
 					<div class="box-header with-border">
-						<h3 class="box-title"><i class="fa fa-credit-card mr-1"></i> {{ __('All Divisions') }}</h3>
+						<h3 class="box-title"><i class="fa fa-credit-card mr-1"></i> {{ __('All Shippers') }}</h3>
 						<div class="box-tools float-right">
 							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 							</button>
@@ -34,17 +34,21 @@
 								<tr>
 									<th>ID</th>
 									<th>Name</th>
+									<th>Status</th>
+									<th>Created</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($divisions as $division)
+								@foreach($shippers as $shipper)
 								<tr>
-									<td>{{ $division->id }}</td>
-									<td>{{ $division->name }}</td>
-									<td><a href="{{ route('divisions.edit', $division->id) }}" class="text-success fa fa-edit"></a></td>
-									<td><a href="{{ route('divisions.destroy', $division->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
+									<td>{{ $shipper->id }}</td>
+									<td>{{ $shipper->name }}</td>
+									<td>@if($shipper->is_active) Active @else Inactive @endif</td>
+									<td>{{ $shipper->created_at->format('jS M Y') }}</td>
+									<td><a href="{{ route('shippers.edit', $shipper->id) }}" class="text-success fa fa-edit"></a></td>
+									<td><a href="{{ route('shippers.destroy', $shipper->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -52,6 +56,8 @@
 								<tr>
 									<th>ID</th>
 									<th>Name</th>
+									<th>Status</th>
+									<th>Created</th>
 									<th>Edit</th>
 									<th>Delete</th>
 								</tr>

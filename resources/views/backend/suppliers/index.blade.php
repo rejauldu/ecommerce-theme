@@ -49,8 +49,8 @@
 									<td>{{ $supplier->contact_name }}</td>
 									<td>{{ $supplier->phone }}</td>
 									<td><a href="{{ $supplier->website }}">{{ $supplier->website }}</a></td>
-									<td><a href="{{ route('suppliers.edit', $supplier->id) }}" class="btn btn-success fa fa-edit"></a></td>
-									<td><a href="{{ route('suppliers.destroy', $supplier->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="btn btn-danger fa fa-trash"></button></td>
+									<td><a href="{{ route('suppliers.edit', $supplier->id) }}" class="text-success fa fa-edit"></a></td>
+									<td><a href="{{ route('suppliers.destroy', $supplier->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
 								</tr>
 								@endforeach
 							</tbody>
