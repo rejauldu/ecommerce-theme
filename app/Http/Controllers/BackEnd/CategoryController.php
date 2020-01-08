@@ -17,9 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$categories = Category::all();
-		return view('backend.categories.index', compact('user', 'categories'));
+		return view('backend.categories.index', compact('categories'));
     }
 
     /**
@@ -29,8 +29,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.categories.create', compact('user'));
+        
+		return view('backend.categories.create');
     }
 
     /**
@@ -61,9 +61,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $category = Category::find($id);
-		return view('backend.categories.show', compact('user', 'category'));
+		return view('backend.categories.show', compact('category'));
     }
 
     /**
@@ -74,9 +74,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $category = Category::find($id);
-		return view('backend.categories.create', compact('user', 'category'));
+		return view('backend.categories.create', compact('category'));
     }
 
     /**

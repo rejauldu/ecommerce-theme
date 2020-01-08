@@ -16,9 +16,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$colors = Color::all();
-		return view('backend.colors.index', compact('user', 'colors'));
+		return view('backend.colors.index', compact('colors'));
     }
 
     /**
@@ -28,8 +28,8 @@ class ColorController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.colors.create', compact('user'));
+        
+		return view('backend.colors.create');
     }
 
     /**
@@ -53,9 +53,9 @@ class ColorController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $color = Color::find($id);
-		return view('backend.colors.show', compact('user', 'color'));
+		return view('backend.colors.show', compact('color'));
     }
 
     /**
@@ -66,9 +66,9 @@ class ColorController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $color = Color::find($id);
-		return view('backend.colors.create', compact('user', 'color'));
+		return view('backend.colors.create', compact('color'));
     }
 
     /**

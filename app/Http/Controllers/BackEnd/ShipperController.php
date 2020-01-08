@@ -16,9 +16,9 @@ class ShipperController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$shippers = Shipper::all();
-		return view('backend.shippers.index', compact('user', 'shippers'));
+		return view('backend.shippers.index', compact('shippers'));
     }
 
     /**
@@ -28,8 +28,8 @@ class ShipperController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.shippers.create', compact('user'));
+        
+		return view('backend.shippers.create');
     }
 
     /**
@@ -53,9 +53,9 @@ class ShipperController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $shipper = Shipper::find($id);
-		return view('backend.shippers.show', compact('user', 'shipper'));
+		return view('backend.shippers.show', compact('shipper'));
     }
 
     /**
@@ -66,9 +66,9 @@ class ShipperController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $shipper = Shipper::find($id);
-		return view('backend.shippers.create', compact('user', 'shipper'));
+		return view('backend.shippers.create', compact('shipper'));
     }
 
     /**

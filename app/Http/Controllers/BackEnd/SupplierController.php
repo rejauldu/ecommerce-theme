@@ -17,9 +17,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$suppliers = Supplier::all();
-		return view('backend.suppliers.index', compact('user', 'suppliers'));
+		return view('backend.suppliers.index', compact('suppliers'));
     }
 
     /**
@@ -29,8 +29,8 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.suppliers.create', compact('user'));
+        
+		return view('backend.suppliers.create');
     }
 
     /**
@@ -54,9 +54,9 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $supplier = Supplier::find($id);
-		return view('backend.suppliers.show', compact('user', 'supplier'));
+		return view('backend.suppliers.show', compact('supplier'));
     }
 
     /**
@@ -67,9 +67,9 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $supplier = Supplier::find($id);
-		return view('backend.suppliers.create', compact('user', 'supplier'));
+		return view('backend.suppliers.create', compact('supplier'));
     }
 
     /**

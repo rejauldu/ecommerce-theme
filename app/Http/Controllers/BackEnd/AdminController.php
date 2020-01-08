@@ -15,8 +15,8 @@ class AdminController extends Controller
      */
     public function users()
     {
-		$user = Auth::user();
-        return view('backend.admins.users', compact('user'));
+		
+        return view('backend.admins.users');
     }
 
     /**

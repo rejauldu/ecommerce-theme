@@ -17,9 +17,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$orders = Order::all();
-		return view('backend.orders.index', compact('user', 'orders'));
+		return view('backend.orders.index', compact('orders'));
     }
 
     /**
@@ -29,8 +29,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.orders.create', compact('user'));
+        
+		return view('backend.orders.create');
     }
 
     /**
@@ -54,9 +54,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $order = Order::find($id);
-		return view('backend.orders.show', compact('user', 'order'));
+		return view('backend.orders.show', compact('order'));
     }
 
     /**
@@ -67,9 +67,9 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $order = Order::find($id);
-		return view('backend.orders.create', compact('user', 'order'));
+		return view('backend.orders.create', compact('order'));
     }
 
     /**
@@ -106,8 +106,8 @@ class OrderController extends Controller
 	
 	public function incomplete()
     {
-		$user = Auth::user();
+		
 		$orders = Order::where('order_status_id', 2)->get();
-		return view('backend.orders.index', compact('user', 'orders'));
+		return view('backend.orders.index', compact('orders'));
     }
 }

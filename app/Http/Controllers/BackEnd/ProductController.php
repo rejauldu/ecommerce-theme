@@ -16,9 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$products = Product::all();
-		return view('backend.products.index', compact('user', 'products'));
+		return view('backend.products.index', compact('products'));
     }
 
     /**
@@ -28,8 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.products.create', compact('user'));
+        
+		return view('backend.products.create');
     }
 
     /**
@@ -53,9 +53,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $product = Product::find($id);
-		return view('backend.products.show', compact('user', 'product'));
+		return view('backend.products.show', compact('product'));
     }
 
     /**
@@ -66,9 +66,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $product = Product::find($id);
-		return view('backend.products.create', compact('user', 'product'));
+		return view('backend.products.create', compact('product'));
     }
 
     /**

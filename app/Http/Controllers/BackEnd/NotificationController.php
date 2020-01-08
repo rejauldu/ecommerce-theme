@@ -18,8 +18,8 @@ class NotificationController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
-        return view('backend.notifications.index', compact('user'));
+		
+        return view('backend.notifications.index');
     }
 
     /**
@@ -29,8 +29,8 @@ class NotificationController extends Controller
      */
     public function create()
     {
-		$user = Auth::user();
-        return view('backend.notifications.create', compact('user'));
+		
+        return view('backend.notifications.create');
     }
 
     /**

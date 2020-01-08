@@ -16,9 +16,9 @@ class SizeController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$sizes = Size::all();
-		return view('backend.sizes.index', compact('user', 'sizes'));
+		return view('backend.sizes.index', compact('sizes'));
     }
 
     /**
@@ -28,8 +28,8 @@ class SizeController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.sizes.create', compact('user'));
+        
+		return view('backend.sizes.create');
     }
 
     /**
@@ -53,9 +53,9 @@ class SizeController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $size = Size::find($id);
-		return view('backend.sizes.show', compact('user', 'size'));
+		return view('backend.sizes.show', compact('size'));
     }
 
     /**
@@ -66,9 +66,9 @@ class SizeController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $size = Size::find($id);
-		return view('backend.sizes.create', compact('user', 'size'));
+		return view('backend.sizes.create', compact('size'));
     }
 
     /**

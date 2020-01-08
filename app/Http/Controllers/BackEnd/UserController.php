@@ -19,8 +19,8 @@ class UserController extends Controller
     public function index()
     {
 		$users = User::all();
-		$user = Auth::user();
-        return view('backend.users.index', compact('user'));
+		
+        return view('backend.users.index');
     }
 
     /**
@@ -30,8 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-		$user = Auth::user();
-        return view('backend.emails.create', compact('user'));
+		
+        return view('backend.emails.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class UserController extends Controller
     {
 		$id = $id;
 		$user = User::find($id);
-        return view('backend.users.show', compact('user'));
+        return view('backend.users.show');
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
         $id = $id;
 		$user = User::find($id);
 		//dd($user);
-        return view('backend.users.edit', compact('user'));
+        return view('backend.users.edit');
     }
 
     /**
@@ -114,7 +114,7 @@ class UserController extends Controller
 	public function management()
     {
         $users = User::with('role')->get();
-		$user = Auth::user();
-        return view('backend.user_managements.index', compact('user', 'users'));
+		
+        return view('backend.user_managements.index', compact('users'));
     }
 }

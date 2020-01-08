@@ -17,8 +17,8 @@ class ContactUsController extends Controller
     public function index()
     {
 		$messages = Chat::all();
-		$user = Auth::user();
-        return view('backend.chats.index', compact('user', 'messages'));
+		
+        return view('backend.chats.index', compact('messages'));
     }
 
     /**

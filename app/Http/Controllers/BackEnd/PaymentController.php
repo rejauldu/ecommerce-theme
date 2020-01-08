@@ -17,9 +17,9 @@ class PaymentController extends Controller
      */
     public function index()
     {
-		$user = Auth::user();
+		
 		$payments = Payment::all();
-		return view('backend.payments.index', compact('user', 'payments'));
+		return view('backend.payments.index', compact('payments'));
     }
 
     /**
@@ -29,8 +29,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
-		return view('backend.payments.create', compact('user'));
+        
+		return view('backend.payments.create');
     }
 
     /**
@@ -54,9 +54,9 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-		$user = Auth::user();
+		
         $payment = Payment::find($id);
-		return view('backend.payments.show', compact('user', 'payment'));
+		return view('backend.payments.show', compact('payment'));
     }
 
     /**
@@ -67,9 +67,9 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-		$user = Auth::user();
+		
         $payment = Payment::find($id);
-		return view('backend.payments.create', compact('user', 'payment'));
+		return view('backend.payments.create', compact('payment'));
     }
 
     /**
