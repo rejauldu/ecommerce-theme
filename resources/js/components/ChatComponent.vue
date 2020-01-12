@@ -58,7 +58,7 @@ export default {
 			let ampm = hours >= 12 ? 'PM' : 'AM';
 			hours = hours % 12;
 			hours = hours ? hours : 12;
-			/*hours += today.getTimezoneOffset()/60;*/
+			hours += today.getTimezoneOffset()/60;
 			minutes = minutes < 10 ? '0'+minutes : minutes;
 			let strTime = hours + ':' + minutes + ' ' + ampm;
 			return strTime;
@@ -252,7 +252,7 @@ export default {
 		this.checkTyping();
 		this.checkSubmit();
 		this.isMessageViewed();
-		this.focusInput();
+		this.scrollToBottom();
 		this.pageVisitAllView();
 		var _this = this;
 		this.channel = Echo.private('Chat.'+_this.user.id)

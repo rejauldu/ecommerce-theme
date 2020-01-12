@@ -20,7 +20,6 @@ Route::post('contact-us', 'Backend\ContactUsController@store')->name('contact-us
 //Routes for dashboard
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'Backend\DashboardController@dashboard')->name('dashboard');
-	Route::get('/chat', 'Backend\ChatController@chat')->name('chats.chat');
 	Route::resource('users', 'Backend\UserController');
 	Route::resource('chats', 'Backend\ChatController');
 });

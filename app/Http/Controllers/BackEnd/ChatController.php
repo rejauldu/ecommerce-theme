@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Chat;
+use Carbon\Carbon;
 use App\User;
 use Auth;
 use DB;
 
 class ChatController extends Controller
 {
+	public function __construct() {
+		
+	}
     /**
      * Display a listing of the resource.
      *
@@ -45,28 +49,25 @@ class ChatController extends Controller
     public function store(Request $request)
     {
 		$data = $request->all();
-		if($data['type'] == 'text') {
-			
-			$server_id = rand(100, 1000);
-			$data['id'] = $server_id;
-			$object = new \stdClass();
-			$object->id = 1;
-			$object->photo = 'avatar.png';
-			$data['sender'] = $object;
-			
-			$object2 = new \stdClass();
-			$object2->id = 6;
-			$object2->photo = 'avatar.png';
-			$data['receiver'] = $object2;
-			$data['created_at'] = 1577542386370;
-			broadcast(new \App\Events\PrivateChatEvent($data))->toOthers();
-			return '{"client_id":'.$request->id.', "server_id":'.$server_id.', "created_at":1577542386370}';
+		
+		if($data['type'] == 'text' && $data['sender_id'] === Auth::user()->id) {
+			$lazy_loaded_chat = Chat::create($request->except('id'));
+			$chat = Chat::with('sender', 'receiver')->where('id', $lazy_loaded_chat->id)->first()->toArray();
+			broadcast(new \App\Events\PrivateChatEvent($chat))->toOthers();
+			return '{"client_id":'.$request->id.', "server_id":'.$chat['id'].', "created_at":"'.$chat['created_at'].'"}';
 		} elseif($data['type'] == 'received_notification') {
-			$data['sent_at'] = 1577542386399;
+			$now = Carbon::now();
+			Chat::find($data['id'])->update(['sent_at' => $now]);
+			$data['sent_at'] = $now;
 			broadcast(new \App\Events\PrivateChatEvent($data))->toOthers();
 			return $data;
 		} elseif($data['type'] == 'viewed_notification') {
-			$data['viewed_at'] = 1577542387000;
+			$now = Carbon::now();
+			if($data['id']) 
+				Chat::find($data['id'])->update(['viewed_at' => $now]);
+			else
+				Chat::whereNull('viewed_at')->where('receiver_id', Auth::user()->id)->where('sender_id', $data['receiver_id'])->update(['viewed_at' => $now]);
+			$data['viewed_at'] = $now;
 			broadcast(new \App\Events\PrivateChatEvent($data))->toOthers();
 			return $data;
 		}

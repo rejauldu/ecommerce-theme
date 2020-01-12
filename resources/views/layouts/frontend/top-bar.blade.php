@@ -1,6 +1,6 @@
 <div class="row">
 	<!--/Space ends-->
-	<div class="d-none d-md-flex col-md-12 navbar navbar-theme fixed-top">
+	<div class="d-none d-md-flex col-md-12 navbar navbar-theme fixed-top" style="height:50px; overflow:hidden">
 		<div class="row">
 			<div class="col-md-3 col-lg-2">
 				<ul class="navbar-nav">
@@ -60,7 +60,7 @@
 							<i class="fa fa-envelope"></i>
 							<!-- Counter - Messages -->
 							@auth
-							<chat-counter v-bind:user="{{ Auth::user() }}" v-bind:partner="{{ $partner ?? '{}' }}" v-bind:total_unread_message="{{ $total_unread_message ?? 0 }}"></chat-counter>
+							<chat-counter v-bind:user="{{ $user }}" v-bind:partner="{{ $partner ?? '{}' }}" v-bind:total_unread_message="{{ $total_unread_message ?? 0 }}"></chat-counter>
 							@endauth
 						</a>
 					</li>
@@ -68,13 +68,13 @@
 					<!-- Nav Item - User Information -->
 					<li class="nav-item dropdown no-arrow">
 						<a class="nav-link dropdown-toggle py-0 text-white" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<span class="mr-2 d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
-							<img class="img-profile rounded-circle" src="{{ asset('assets/profile') }}/{{ Auth::user()->photo }}">
+							<span class="mr-2 d-lg-inline text-gray-600 small">{{ $user->name }}</span>
+							<img class="img-profile rounded-circle" src="{{ asset('assets/profile') }}/{{ $user->photo }}">
 						</a>
 						<!-- Dropdown - User Information -->
 						<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in position-absolute" aria-labelledby="userDropdown">
-							<a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}"><i class="fa fa-user mr-2 text-gray-400"></i>{{ __('Profile') }}</a>
-							<a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}"><i class="fa fa-cogs mr-2 text-gray-400"></i>{{ __('Settings') }}</a>
+							<a class="dropdown-item" href="{{ route('users.show', $user->id) }}"><i class="fa fa-user mr-2 text-gray-400"></i>{{ __('Profile') }}</a>
+							<a class="dropdown-item" href="{{ route('users.edit', $user->id) }}"><i class="fa fa-cogs mr-2 text-gray-400"></i>{{ __('Settings') }}</a>
 							<a class="dropdown-item" href="#"><i class="fa fa-list mr-2 text-gray-400"></i>{{ __('Activity Log') }}</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out mr-2"></i>{{ __('Logout') }}</a>
