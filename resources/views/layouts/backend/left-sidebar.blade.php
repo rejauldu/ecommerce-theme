@@ -46,7 +46,7 @@
 				</ul>
 			</li>
 			<li class="{{ Request::is('chat') ? 'active' : '' }}">
-				<a href="{{ route('chats.chat') }}"><i class="fa fa-envelope"></i><span>{{ __('Chat') }}</span></a>
+				<a href="{{ route('chats.index') }}"><i class="fa fa-envelope"></i><span>{{ __('Chat') }}</span></a>
 			</li>
 			@admin
 			<li class="treeview {{ Request::is('suppliers*') ? 'active' : '' }}">

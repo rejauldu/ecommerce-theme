@@ -1,5 +1,5 @@
 <template>
-	<span class="badge badge-danger badge-counter">{{ mutable_total_unread_message }}</span>
+	<span v-if="mutable_total_unread_message" class="badge badge-danger badge-counter">{{ mutable_total_unread_message }}</span>
 </template>
 <script>
 
