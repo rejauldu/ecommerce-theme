@@ -14,6 +14,7 @@
 	<!-- Smooth Scroll -->
 	<!--- Box JavaScript -->
 	<script src="{{ asset('js/adminlte.min.js') }}"></script>
+	<script src="{{ asset('js/demo.js') }}"></script>
 	<script src="{{ asset('js/smooth-scroll.js') }}"></script>
 	<!--- Box JavaScript -->
 	<script src="{{ asset('js/theme.js') }}"></script>

@@ -199,3 +199,9 @@ table.dataTable thead .sorting_desc_disabled:before {
 	}
 }
 /* Fancy Tabs ends */
+/* Adminlte b-3 update */
+.nav-theme>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}

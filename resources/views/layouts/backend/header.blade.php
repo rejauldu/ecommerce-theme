@@ -13,15 +13,15 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 	<!-- All packages style -->
-	<link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 	<!-- Box style -->
-	<link href="{{ asset('/css/adminlte.min.css') }}" rel="stylesheet" media="screen">
+	<link rel="stylesheet" href="{{ asset('/css/adminlte.min.css') }}">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
 		folder instead of downloading all of them to reduce the load. -->
-	<link rel="stylesheet" href="{{asset('css/skins/skin-blue.min.css')}}">
+	<link rel="stylesheet" href="{{asset('css/skins/_all-skins.min.css')}}">
 	<!-- Theme style -->
-	<link href="{{ asset('/css/theme.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('/css/theme.css') }}">
 	@yield('style')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-	<div id="app"><!-- #app for vuejs -->
+	<div id="app" class="wrapper"><!-- #app for vuejs -->
