@@ -37,6 +37,7 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::resource('sizes', 'Backend\SizeController');
 	Route::resource('colors', 'Backend\ColorController');
 	Route::resource('products', 'Backend\ProductController');
+	Route::resource('units', 'Backend\UnitController');
 	Route::resource('order-statuses', 'Backend\OrderStatusController');
 	Route::resource('shippers', 'Backend\ShipperController');
 	Route::resource('orders', 'Backend\OrderController');

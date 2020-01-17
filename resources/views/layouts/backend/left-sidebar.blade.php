@@ -32,15 +32,17 @@
 			</li>
 			<li class="treeview {{ Request::is('users*') ? 'active' : '' }}">
 				<a href="#">
+					@admin
+					<i class="fa fa-user"></i><span>{{ __('User Management') }}</span>
+					@else
 					<i class="fa fa-user"></i><span>{{ __('Profile') }}</span>
+					@endadmin
 					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 				</a>
 				<ul class="treeview-menu {{ Request::is('users*') ? 'show' : '' }}">
-					<li class="{{ Request::route()->getName() == 'users.show' ? 'active' : '' }}"><a href="{{ route('users.show', $user->id) }}"><i class="fa fa-circle-o"></i> {{ __('My Profile') }}</a></li>
-					<li class="{{ Request::route()->getName() == 'users.edit' ? 'active' : '' }}"><a href="{{ route('users.edit', $user->id) }}"><i class="fa fa-circle-o"></i> {{ __('Settings') }}</a></li>
-					<li class=""><a href="#"><i class="fa fa-circle-o"></i> {{ __('Activity Log') }}</a></li>
+					<li class="{{ Request::route()->getName() == 'users.edit' ? 'active' : '' }}"><a href="{{ route('users.edit', $user->id) }}"><i class="fa fa-circle-o"></i> {{ __('My Profile') }}</a></li>
 					@admin
-					<li class="{{ Request::route()->getName() == 'users-management' ? 'active' : '' }}"><a href="{{ route('users-management') }}"><i class="fa fa-circle-o"></i> {{ __('User Management') }}</a></li>
+					<li class="{{ Request::route()->getName() == 'users-management' ? 'active' : '' }}"><a href="{{ route('users-management') }}"><i class="fa fa-circle-o"></i> {{ __('All Users') }}</a></li>
 					@endadmin
 					<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-circle-o"></i> {{ __('Logout') }}</a></li>
 				</ul>
@@ -87,6 +89,16 @@
 				<ul class="treeview-menu">
 					<li class="{{ Request::is('payments') ? 'active' : '' }}"><a href="{{ route('payments.index') }}"><i class="fa fa-circle-o"></i> Manage Payment</a></li>
 					<li class="{{ Request::is('payments/create') ? 'active' : '' }}"><a href="{{ route('payments.create') }}"><i class="fa fa-circle-o"></i> Add New Payment</a></li>
+				</ul>
+			</li>
+			<li class="treeview {{ Request::is('units*') ? 'active' : '' }}">
+				<a href="#">
+					<i class="fa fa-measurement" aria-hidden="true"></i> <span>Unit</span>
+					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+				</a>
+				<ul class="treeview-menu">
+					<li class="{{ Request::is('units') ? 'active' : '' }}"><a href="{{ route('units.index') }}"><i class="fa fa-circle-o"></i> Manage Unit</a></li>
+					<li class="{{ Request::is('units/create') ? 'active' : '' }}"><a href="{{ route('units.create') }}"><i class="fa fa-circle-o"></i> Add New Unit</a></li>
 				</ul>
 			</li>
 			<li class="treeview {{ Request::is('regions*') ? 'active' : '' }}">

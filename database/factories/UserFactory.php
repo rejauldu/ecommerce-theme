@@ -25,7 +25,7 @@ $factory->define(User::class, function (Faker $faker) {
 		'phone' => $faker->phoneNumber,
 		'role_id' => 1,
 		'credit_card' => $faker->numberBetween(1000, 10000),
-		'credit_card_type_id' => $faker->numberBetween(1, 5),
+		'payment_id' => $faker->numberBetween(1, 5),
 		'card_exp_month' => $faker->numberBetween(1, 12),
 		'card_exp_year' => $faker->numberBetween(2019, 2025),
 		'address' => $faker->address,

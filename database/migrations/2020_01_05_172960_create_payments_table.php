@@ -16,7 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('name');
-			$table->tinyInteger('is_active');
+			$table->tinyInteger('is_active')->default(1);
             $table->timestamps();
         });
     }

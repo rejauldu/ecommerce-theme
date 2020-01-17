@@ -12,7 +12,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'sku', 'name', 'description', 'supplier_id', 'category_id', 'quantity_per_unit', 'msrp', 'size_id', 'color_id', 'discount', 'weight', 'stock', 'unit_on_order', 'reorder_level', 'is_available', 'discount_available', 'picture', 'ranking', 'note', 'deleted_at', 'created_at', 'updated_at'
+        'sku', 'name', 'description', 'supplier_id', 'category_id', 'quantity_per_unit', 'msrp', 'size_id', 'color_id', 'discount', 'weight', 'stock', 'unit_id', 'unit_on_order', 'reorder_level', 'is_available', 'discount_available', 'picture', 'ranking', 'note', 'deleted_at', 'created_at', 'updated_at'
     ];
 
     /**

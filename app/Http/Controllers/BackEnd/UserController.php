@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Payment;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
@@ -66,10 +67,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $id = $id;
-		$user = User::find($id);
-		//dd($user);
-        return view('backend.users.edit');
+		$payments = Payment::all();
+        return view('backend.users.edit', compact('payments'));
     }
 
     /**

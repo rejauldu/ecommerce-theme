@@ -1,5 +1,7 @@
 @extends('layouts.dashboard')
-
+@section('title')
+Edit Profile
+@endsection
 @section('content')
 <div class="content-wrapper">
 	<div class="container-fluid">
@@ -18,7 +20,7 @@
 		@endif
 		<div class="row">
 			<div class="col-12">
-				<div class="box box-info">
+				<div class="box box-info" style="background:#f8fafc">
 					<div class="box-header with-border">
 						<h3 class="box-title"><i class="fa fa-edit"></i> {{ __('Update profile') }}</h3>
 						<div class="box-tools float-right">
@@ -28,7 +30,7 @@
 						</div>
 					</div>
 					<div class="box-body">
-						<div class="row pt-2">
+						<div class="row py-2">
 							<div class="col-12 col-md-3"><!--left col-->
 								<div class="text-center">
 									<img id="display-photo-on-select" src="{{ asset('/assets/profile') }}/{{ $user->photo }}" class="img-thumbnail rounded-circle" alt="avatar">
@@ -36,11 +38,13 @@
 									<form class="ajax-upload text-left" action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data">
 										@csrf
 										@method('PUT')
-										<input type="file" id="file" name="photo" class="btn-theme" onchange="displayPhotoOnSelect(this)" accept="image/*" value="Upload picture" />
+										<div class="form-group">
+											<input type="file" id="file" name="photo" class="form-control bg-theme text-white" onchange="displayPhotoOnSelect(this)" accept="image/*" value="Upload picture" />
+										</div>
 										<div class="progress mt-2">
 											<div class="progress-bar progress-bar-striped active list" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%; height:100%; line-height:22px"></div>
 										</div>
-										<input type="submit" class="mt-3 btn btn-theme" value="Upload" />
+										<input type="submit" class="my-3 btn btn-theme" value="Upload" />
 									</form>
 								</div>
 							</div><!--/col-3-->
@@ -58,14 +62,44 @@
 											@csrf
 											@method('PUT')
 											<div class="form-group">
-												<label for="first_name"><h4>Name</h4></label>
-												<input id="name" type="text" class="form-control" name="name" value="{{ $user->name }}" placeholder="First name" title="Enter your first name if any." />
+												<label for="first_name">Name</label>
+												<input id="name" type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}" placeholder="Enter name" title="Enter your name." />
 											</div>
 											<div class="form-group">
-												<label for="email"><h4>Email</h4></label>
-												<input id="email" type="email" class="form-control" name="email" value="{{ $user->email }}" placeholder="you@email.com" title="Enter your email."/>
+												<label for="phone">Phone</label>
+												<input id="phone" type="tel" class="form-control" name="phone" value="{{ $user->phone ?? '' }}" placeholder="Enter phone number" title="Enter your phone number."/>
 											</div>
-											
+											<div class="form-group">
+												<label for="card-type">Card Type</label>
+												<select id="card-type" name="payment_id" class="custom-select">
+													<option value="-1" selected>--Select Card Type--</option>
+													@foreach($payments as $payment)
+													<option value="{{ $payment->id }}" @if($payment->id == $user->payment->id) selected @endif>{{ $payment->name }}</option>
+													@endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="name-on-card">Name on card</label>
+												<input id="name-on-card" type="text" class="form-control" name="name_on_card" value="{{ $user->name_on_card ?? '' }}" placeholder="Enter you name on card" title="Enter your phone number."/>
+											</div>
+											<div class="form-group">
+												<div class="form-group">
+													<div class="row">
+														<div class="col-6 col-md-3">
+															<label for="card-exp-month">Exp. date</label>
+															<input id="card-exp-month" type="number" class="form-control" name="card_exp_month" value="{{ $user->card_exp_month ?? '' }}" placeholder="Month" title="Exp. Month"/>
+														</div>
+														<div class="col-6 col-md-3">
+															<label for="card-exp-year">Exp. Year</label>
+															<input id="card-exp-year" type="number" class="form-control" name="card_exp_year" value="{{ $user->card_exp_year ?? '' }}" placeholder="Year" title="Exp. Year"/>
+														</div>
+														<div class="col-12 col-md-6">
+															<label for="cvv">CVV</label>
+															<input id="cvv" type="number" class="form-control" name="cvv" value="{{ $user->cvv ?? '' }}" placeholder="CVV" title="CVV"/>
+														</div>
+													</div>
+												</div>
+											</div>
 											<div class="form-group">
 												<button id="profile-submit" class="btn btn-theme" type="submit">Update</button>
 											</div>

@@ -21,10 +21,12 @@ class CreateUsersTable extends Migration
 			$table->string('password');
 			$table->string('phone', 30)->nullable();
 			$table->integer('role_id')->unsigned()->index()->default(1);
+			$table->string('name_on_card')->nullable();
 			$table->string('credit_card')->nullable();
-			$table->integer('credit_card_type_id')->unsigned()->index()->nullable();
+			$table->integer('payment_id')->unsigned()->index()->nullable();
 			$table->integer('card_exp_month')->nullable();
 			$table->integer('card_exp_year')->nullable();
+			$table->integer('cvv')->nullable();
             $table->string('address')->nullable();
 			$table->integer('region_id')->unsigned()->index()->nullable();
 			$table->integer('union_id')->unsigned()->index()->nullable();

@@ -27,7 +27,10 @@ $factory->define(Product::class, function (Faker $faker) {
 		'discount' => $faker->numberBetween(10, 50),
 		'weight' => $faker->numberBetween(5, 10),
 		'stock' => $faker->numberBetween(5, 10),
-		'unit_on_order' => $faker->numberBetween(5, 10),
+		'unit_id' => function(){
+    		return App\Unit::all()->random();
+    	},
+		'unit_on_order' => $faker->numberBetween(1, 5),
 		'reorder_level' => $faker->numberBetween(1, 100),
 		'is_available' => $faker->numberBetween(0, 1),
 		'discount_available' => $faker->numberBetween(0, 1),

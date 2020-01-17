@@ -35,11 +35,11 @@ class AppServiceProvider extends ServiceProvider
 				$isAuth = 'true';
 			}
 			
-			return "<?php if ($isAuth) { ?>";
+			return "<?php if ($isAuth): ?>";
 		});
 
 		Blade::directive('endadmin', function () {
-			return "<?php } ?>";
+			return "<?php endif; ?>";
 		});
 		Blade::directive('moderator', function () {
 			$isAuth = 'false';
@@ -48,11 +48,11 @@ class AppServiceProvider extends ServiceProvider
 				$isAuth = 'true';
 			}
 			
-			return "<?php if ($isAuth) { ?>";
+			return "<?php if ($isAuth): ?>";
 		});
 
 		Blade::directive('endmoderator', function () {
-			return "<?php } ?>";
+			return "<?php endif; ?>";
 		});
 		Blade::directive('user', function () {
 			$isAuth = 'false';
@@ -61,11 +61,11 @@ class AppServiceProvider extends ServiceProvider
 				$isAuth = 'true';
 			}
 			
-			return "<?php if ($isAuth) { ?>";
+			return "<?php if ($isAuth): ?>";
 		});
 
 		Blade::directive('enduser', function () {
-			return "<?php } ?>";
+			return "<?php endif; ?>";
 		});
 		
 		view()->composer('*', function ($view) {

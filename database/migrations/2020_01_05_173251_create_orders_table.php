@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
 			$table->timestamp('required_at')->nullable();
 			$table->timestamp('shipping_date')->nullable();
 			$table->timestamp('paid_at')->nullable();
+			$table->integer('discount')->unsigned()->default(0);
             $table->timestamps();
         });
     }

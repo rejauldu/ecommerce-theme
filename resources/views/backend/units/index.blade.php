@@ -1,13 +1,15 @@
 @extends('layouts.dashboard')
-
+@section('title')
+{{ __('All Units') }}
+@endsection
 @section('content')
 <div class="content-wrapper">
 	<div class="container-fluid">
 		<section class="content-header">
-			<h3>Management <small>Users</small></h3>
+			<h3>Unit <small>all</small></h3>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-				<li class="active">User Management</li>
+				<li class="active">Units</li>
 			</ol>
 		</section>
 		@if(session()->has('message'))
@@ -19,7 +21,7 @@
 			<div class="col-12">
 				<div class="box box-info">
 					<div class="box-header with-border">
-						<h3 class="box-title"><i class="fa fa-users mr-1"></i> {{ __('All Users') }}</h3>
+						<h3 class="box-title"><i class="fa fa-credit-card mr-1"></i> {{ __('All Units') }}</h3>
 						<div class="box-tools float-right">
 							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 							</button>
@@ -32,23 +34,21 @@
 								<tr>
 									<th>ID</th>
 									<th>Name</th>
-									<th>Email</th>
-									<th>Photo</th>
-									<th>Role</th>
-									<th>Verification date</th>
-									<th>Update date</th>
+									<th>Status</th>
+									<th>Created</th>
+									<th>Edit</th>
+									<th>Delete</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($users as $u)
+								@foreach($units as $unit)
 								<tr>
-									<td>{{ $u->id }}</td>
-									<td>{{ $u->name }}</td>
-									<td>{{ $u->email }}</td>
-									<td><img src="{{ asset('/assets/profile/'.$u->photo) }}" width="50" height="50" /></td>
-									<td>{{ $u->role->name }}</td>
-									<td>{{ $u->email_verified_at }}</td>
-									<td>{{ $u->updated_at }}</td>
+									<td>{{ $unit->id }}</td>
+									<td>{{ $unit->name }}</td>
+									<td>@if($unit->is_active) Active @else Inactive @endif</td>
+									<td>{{ $unit->created_at->format('jS M Y') }}</td>
+									<td><a href="{{ route('units.edit', $unit->id) }}" class="text-success fa fa-edit"></a></td>
+									<td><a href="{{ route('units.destroy', $unit->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form').action = this.href; document.getElementById('delete-form').submit.click();" class="text-danger fa fa-trash"></button></td>
 								</tr>
 								@endforeach
 							</tbody>
@@ -56,11 +56,10 @@
 								<tr>
 									<th>ID</th>
 									<th>Name</th>
-									<th>Email</th>
-									<th>Photo</th>
-									<th>Role</th>
-									<th>Verification date</th>
-									<th>Update date</th>
+									<th>Status</th>
+									<th>Created</th>
+									<th>Edit</th>
+									<th>Delete</th>
 								</tr>
 							</tfoot>
 						</table>

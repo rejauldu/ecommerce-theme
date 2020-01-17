@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Unit extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Order extends Model
      * @var array
      */
     protected $fillable = [
-        'payment_id', 'customer_id', 'shipper_id', 'order_status_id', 'required_at', 'shipping_date', 'paid_at', 'discount', 'updated_at', 'created_at'
+        'name', 'is_active', 'updated_at', 'created_at'
     ];
 
     /**
@@ -33,7 +33,4 @@ class Order extends Model
         'updated_at' => 'datetime',
 		'created_at' => 'datetime',
     ];
-	public function details() {
-		return $this->hasMany('App\OrderDetail');
-	}
 }
