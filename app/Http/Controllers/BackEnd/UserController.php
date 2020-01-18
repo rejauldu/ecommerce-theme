@@ -19,9 +19,9 @@ class UserController extends Controller
      */
     public function index()
     {
-		$users = User::all();
-		
-        return view('backend.users.index');
+		User::ifAdmin();
+		$users = User::with('district', 'role')->paginate(50);
+        return view('backend.users.index', compact('users'));
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-		
+		User::ifAdmin();
         return view('backend.emails.create');
     }
 
@@ -54,9 +54,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-		$id = $id;
+		User::ifAdminOrUserBy($id);
 		$user = User::find($id);
-        return view('backend.users.show');
+        return view('backend.users.show', compact('user'));
     }
 
     /**
@@ -67,8 +67,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+		User::ifAdminOrUserBy($id);
+		$user = User::with('payment')->where('id', $id)->first();
 		$payments = Payment::all();
-        return view('backend.users.edit', compact('payments'));
+        return view('backend.users.edit', compact('user', 'payments'));
     }
 
     /**
@@ -80,6 +82,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+		User::ifAdminOrUserBy($id);
 		$file = $request->file('photo');
 		if($file) {
 			$destination_path = 'assets/profile';
@@ -108,12 +111,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-	public function management()
-    {
-        $users = User::with('role')->get();
-		
-        return view('backend.user_managements.index', compact('users'));
+        User::ifAdminOrUserBy($id);
+		$user = User::find($id);
+		$user->delete();
+		return redirect()->back()->with('message', 'User has been deleted');
     }
 }

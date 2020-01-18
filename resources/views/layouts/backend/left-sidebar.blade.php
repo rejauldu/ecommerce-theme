@@ -42,7 +42,7 @@
 				<ul class="treeview-menu {{ Request::is('users*') ? 'show' : '' }}">
 					<li class="{{ Request::route()->getName() == 'users.edit' ? 'active' : '' }}"><a href="{{ route('users.edit', $user->id) }}"><i class="fa fa-circle-o"></i> {{ __('My Profile') }}</a></li>
 					@admin
-					<li class="{{ Request::route()->getName() == 'users-management' ? 'active' : '' }}"><a href="{{ route('users-management') }}"><i class="fa fa-circle-o"></i> {{ __('All Users') }}</a></li>
+					<li class="{{ Request::route()->getName() == 'users.index' ? 'active' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i> {{ __('All Users') }}</a></li>
 					@endadmin
 					<li><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-circle-o"></i> {{ __('Logout') }}</a></li>
 				</ul>

@@ -150,7 +150,7 @@
 			<div class="col-12 col-md-6">
 				<div class="box box-info">
 					<div class="box-header with-border">
-						<h3 class="box-title">Daily traffic</h3>
+						<h3 class="box-title">Traffic Comparison</h3>
 						<div class="box-tools pull-right">
 							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -166,7 +166,7 @@
 			<div class="col-12 col-md-6">
 				<div class="box box-info">
 					<div class="box-header with-border">
-						<h3 class="box-title">Monthly traffic</h3>
+						<h3 class="box-title">Computer vs Mobile</h3>
 						<div class="box-tools pull-right">
 							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -350,7 +350,7 @@
 			<div class="col-12 col-md-6">
 				<div class="box box-default">
 					<div class="box-header with-border">
-						<h3 class="box-title">Browser Usage</h3>
+						<h3 class="box-title">Operating Systems</h3>
 						<div class="box-tools pull-right">
 							<button type="button" class="btn btn-box-tool" data-widget="collapse">
 								<i class="fa fa-minus"></i>

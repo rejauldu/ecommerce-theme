@@ -51,4 +51,28 @@ class User extends Authenticatable
 	public function payment() {
 		return $this->belongsTo('App\Payment');
 	}
+	public function division() {
+		return $this->belongsTo('App\Division');
+	}
+	public function district() {
+		return $this->belongsTo('App\District');
+	}
+	public function upazila() {
+		return $this->belongsTo('App\Upazila');
+	}
+	public function union() {
+		return $this->belongsTo('App\Union');
+	}
+	public function region() {
+		return $this->belongsTo('App\Region');
+	}
+	public static function ifAdmin() {
+		if(\Auth::user()->role->id != 3)
+			return redirect()->back();
+	}
+	public static function ifAdminOrUserBy($id) {
+		$user = \Auth::user();
+		if($user->role->id != 3 && $user->id != $id)
+			return redirect()->back();
+	}
 }
