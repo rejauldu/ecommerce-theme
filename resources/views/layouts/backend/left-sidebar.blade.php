@@ -93,7 +93,7 @@
 			</li>
 			<li class="treeview {{ Request::is('units*') ? 'active' : '' }}">
 				<a href="#">
-					<i class="fa fa-measurement" aria-hidden="true"></i> <span>Unit</span>
+					<i class="fa fa-balance-scale" aria-hidden="true"></i> <span>Unit</span>
 					<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 				</a>
 				<ul class="treeview-menu">

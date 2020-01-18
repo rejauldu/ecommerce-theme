@@ -44,6 +44,8 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::get('orders-incomplete', 'Backend\OrderController@incomplete')->name('orders.incomplete');
 	Route::get('/clear-cache', function() {
 		Artisan::call('cache:clear');
+		Artisan::call('cache:clear');
+		Artisan::call('view:clear');
 		return redirect('/dashboard');
 	});
 });
