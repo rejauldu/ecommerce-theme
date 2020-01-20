@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Locations;
+namespace App\Http\Controllers\Locations;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\Locations\Division;
 
-class UnionController extends Controller
+class DivisionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,8 @@ class UnionController extends Controller
      */
     public function index()
     {
-        //
+        $division = Division::select('id', 'name')->get();
+		return $division;
     }
 
     /**
@@ -24,7 +27,8 @@ class UnionController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+		return view('backend.locations.divisions.create', compact('user'));
     }
 
     /**
@@ -35,7 +39,9 @@ class UnionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token', '_method');
+		Division::find($id)->update($data);
+		return redirect(route('divisions.index'))->with('message', 'Supplier created successfully');
     }
 
     /**
@@ -46,7 +52,8 @@ class UnionController extends Controller
      */
     public function show($id)
     {
-        //
+        $division = Division::select('id', 'name')->where('id', $id)->with('districts')->get();
+		return $division;
     }
 
     /**
@@ -57,7 +64,9 @@ class UnionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $division = Division::find($id);
+		return view('backend.locations.divisions.create', compact('user', 'division'));
     }
 
     /**
@@ -69,7 +78,11 @@ class UnionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except('_token', '_method');
+		$division = Division::find($id);
+		$division->update($data);
+		
+		return redirect(route('divisions.index'))->with('message', 'Division updated successfully');
     }
 
     /**
@@ -80,6 +93,8 @@ class UnionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $division = Division::find($id);
+		$division->delete();
+		return redirect()->back()->with('message', 'Division has been deleted');
     }
 }

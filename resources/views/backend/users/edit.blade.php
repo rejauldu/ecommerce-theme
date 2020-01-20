@@ -33,9 +33,9 @@ Edit Profile
 						<div class="row py-2">
 							<div class="col-12 col-md-3"><!--left col-->
 								<div class="text-center">
-									<img id="display-photo-on-select" src="{{ asset('/assets/profile') }}/{{ $user->photo }}" class="img-thumbnail rounded-circle" alt="avatar">
+									<img id="display-photo-on-select" src="{{ asset('/assets/profile') }}/{{ $profile->photo }}" class="img-thumbnail rounded-circle" alt="avatar">
 									<h6>Upload a different photo...</h6>
-									<form class="ajax-upload text-left" action="{{ route('users.update', $user->id) }}" method="post" enctype="multipart/form-data">
+									<form class="ajax-upload text-left" action="{{ route('users.update', $profile->id) }}" method="post" enctype="multipart/form-data">
 										@csrf
 										@method('PUT')
 										<div class="form-group">
@@ -52,50 +52,50 @@ Edit Profile
 								<ul class="nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#profile">Profile</a></li>
 									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password">Password</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#address1">Address 1</a></li>
-									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#address2">Address 2</a></li>
-									
+									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#address">Address</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#billing">Billing Address</a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#shipping">Shipping Address</a></li>
 								</ul>
 								<div class="tab-content mt-3">
 									<div class="tab-pane active" id="profile">
-										<form class="ajax-upload" action="{{ route('users.update', $user->id) }}" method="post">
+										<form class="ajax-upload" action="{{ route('users.update', $profile->id) }}" method="post">
 											@csrf
 											@method('PUT')
 											<div class="form-group">
 												<label for="first_name">Name</label>
-												<input id="name" type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}" placeholder="Enter name" title="Enter your name." />
+												<input id="name" type="text" class="form-control" name="name" value="{{ $profile->name ?? '' }}" placeholder="Enter name" title="Enter your name." />
 											</div>
 											<div class="form-group">
 												<label for="phone">Phone</label>
-												<input id="phone" type="tel" class="form-control" name="phone" value="{{ $user->phone ?? '' }}" placeholder="Enter phone number" title="Enter your phone number."/>
+												<input id="phone" type="tel" class="form-control" name="phone" value="{{ $profile->phone ?? '' }}" placeholder="Enter phone number" title="Enter your phone number."/>
 											</div>
 											<div class="form-group">
 												<label for="card-type">Card Type</label>
 												<select id="card-type" name="payment_id" class="custom-select">
-													<option value="-1" selected>--Select Card Type--</option>
+													<option value="0" selected>--Select Card Type--</option>
 													@foreach($payments as $payment)
-													<option value="{{ $payment->id }}" @if($payment->id == $user->payment->id) selected @endif>{{ $payment->name }}</option>
+													<option value="{{ $payment->id }}" @if($payment->id == $profile->payment->id) selected @endif>{{ $payment->name }}</option>
 													@endforeach
 												</select>
 											</div>
 											<div class="form-group">
 												<label for="name-on-card">Name on card</label>
-												<input id="name-on-card" type="text" class="form-control" name="name_on_card" value="{{ $user->name_on_card ?? '' }}" placeholder="Enter you name on card" title="Enter your phone number."/>
+												<input id="name-on-card" type="text" class="form-control" name="name_on_card" value="{{ $profile->name_on_card ?? '' }}" placeholder="Enter you name on card" title="Enter your phone number."/>
 											</div>
 											<div class="form-group">
 												<div class="form-group">
 													<div class="row">
 														<div class="col-6 col-md-3">
 															<label for="card-exp-month">Exp. date</label>
-															<input id="card-exp-month" type="number" class="form-control" name="card_exp_month" value="{{ $user->card_exp_month ?? '' }}" placeholder="Month" title="Exp. Month"/>
+															<input id="card-exp-month" type="number" class="form-control" name="card_exp_month" value="{{ $profile->card_exp_month ?? '' }}" placeholder="Month" title="Exp. Month"/>
 														</div>
 														<div class="col-6 col-md-3">
 															<label for="card-exp-year">Exp. Year</label>
-															<input id="card-exp-year" type="number" class="form-control" name="card_exp_year" value="{{ $user->card_exp_year ?? '' }}" placeholder="Year" title="Exp. Year"/>
+															<input id="card-exp-year" type="number" class="form-control" name="card_exp_year" value="{{ $profile->card_exp_year ?? '' }}" placeholder="Year" title="Exp. Year"/>
 														</div>
 														<div class="col-12 col-md-6">
 															<label for="cvv">CVV</label>
-															<input id="cvv" type="number" class="form-control" name="cvv" value="{{ $user->cvv ?? '' }}" placeholder="CVV" title="CVV"/>
+															<input id="cvv" type="number" class="form-control" name="cvv" value="{{ $profile->cvv ?? '' }}" placeholder="CVV" title="CVV"/>
 														</div>
 													</div>
 												</div>
@@ -106,7 +106,7 @@ Edit Profile
 										</form>
 									</div><!--/tab-pane-->
 									<div class="tab-pane" id="password">
-										<form class="ajax-upload" action="{{ route('users.update', $user->id) }}" method="post">
+										<form class="ajax-upload" action="{{ route('users.update', $profile->id) }}" method="post">
 											@csrf
 											@method('PUT')
 											<div class="form-group">
@@ -114,8 +114,8 @@ Edit Profile
 												<input id="password_old" type="password" class="form-control" name="password_old" value="" placeholder="Enter old password" title="Enter old password."/>
 											</div>
 											<div class="form-group">
-												<label for="password"><h4>New Password</h4></label>
-												<input id="password" type="password" class="form-control" name="password" value="" placeholder="Enter new password." title="Enter your password."/>
+												<label for="pass"><h4>New Password</h4></label>
+												<input id="pass" type="password" class="form-control" name="password" value="" placeholder="Enter new password." title="Enter your password."/>
 											</div>
 											<div class="form-group">
 												<label for="password_confirmation"><h4>Confirm Password</h4></label>
@@ -126,35 +126,150 @@ Edit Profile
 											</div>
 										</form>
 									</div><!--/tab-pane-->
-									<div class="tab-pane" id="address1">
-										<form class="ajax-upload" action="{{ route('users.update', $user->id) }}" method="post">
+									<div class="tab-pane" id="address">
+										<form class="ajax-upload" action="{{ route('users.update', $profile->id) }}" method="post">
 											@csrf
 											@method('PUT')
 											<div class="form-group">
+												<label for="card-type">Division</label>
+												<select id="division" name="division_id" class="custom-select">
+													<option value="0" selected>--Select division--</option>
+													@foreach($divisions as $division)
+													<option value="{{ $division->id }}" @if($division->id == $profile->division->id) selected @endif>{{ $division->name }}</option>
+													@endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="district">District</label>
+												<select id="district" name="district_id" class="custom-select">
+													<option value="{{ $profile->district->id }}" selected>{{ $profile->district->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="upazila">Upazila</label>
+												<select id="upazila" name="upazila_id" class="custom-select">
+													<option value="{{ $profile->upazila->id }}" selected>{{ $profile->upazila->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="union">Union</label>
+												<select id="union" name="union_id" class="custom-select">
+													<option value="{{ $profile->union->id }}" selected>{{ $profile->union->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="region">Region</label>
+												<select id="region" name="region_id" class="custom-select">
+													<option value="{{ $profile->region->id ?? 0 }}" selected>{{ $profile->region->name ?? '--Select region--'}}</option>
+												</select>
+											</div>
+											<div class="form-group">
 												<div class="col-xs-6">
-													<label for="first_name"><h4>First name2</h4></label>
-													<input type="text" class="form-control" name="first_name" placeholder="first name" title="enter your first name if any."/>
+													<label for="ad">Address</label>
+													<textarea class="form-control" name="address" placeholder="Enter Address" title="Enter you Address">{{ $profile->address }}</textarea>
 												</div>
 											</div>
 											<div class="form-group">
-												<button id="address1_submit" class="btn btn-theme" type="submit">Update</button>
+												<button id="address-submit" class="btn btn-theme" type="submit">Update</button>
 											</div>
 										</form>
 									</div><!--/tab-pane-->
-									<div class="tab-pane" id="address2">
-										<form class="form" action="##" method="post">
+									<div class="tab-pane" id="billing">
+										<form class="ajax-upload" action="{{ route('users.update', $profile->id) }}" method="post">
+											@csrf
+											@method('PUT')
+											<div class="form-group">
+												<label for="card-type">Division</label>
+												<select id="billing-division" name="billing_division_id" class="custom-select">
+													<option value="0" selected>--Select division--</option>
+													@foreach($divisions as $division)
+													<option value="{{ $division->id }}" @if($division->id == $profile->billing_division->id) selected @endif>{{ $division->name }}</option>
+													@endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="district">District</label>
+												<select id="billing-district" name="billing_district_id" class="custom-select">
+													<option value="{{ $profile->district->id }}" selected>{{ $profile->billing_district->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="upazila">Upazila</label>
+												<select id="billing-upazila" name="billing_upazila_id" class="custom-select">
+													<option value="{{ $profile->upazila->id }}" selected>{{ $profile->billing_upazila->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="union">Union</label>
+												<select id="billing-union" name="billing_union_id" class="custom-select">
+													<option value="{{ $profile->union->id }}" selected>{{ $profile->billing_union->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="region">Region</label>
+												<select id="billing-region" name="billing_region_id" class="custom-select">
+													<option value="{{ $profile->region->id ?? 0 }}" selected>{{ $profile->billing_region->name ?? '--Select region--'}}</option>
+												</select>
+											</div>
 											<div class="form-group">
 												<div class="col-xs-6">
-													<label for="first_name"><h4>First name3</h4></label>
-													<input type="text" class="form-control" name="first_name" placeholder="first name" title="enter your first name if any."/>
+													<label for="ad">Address</label>
+													<textarea class="form-control" name="billing_address" placeholder="Enter Address" title="Enter you Address">{{ $profile->billing_address }}</textarea>
 												</div>
 											</div>
 											<div class="form-group">
-												<button id="address2_submit" class="btn btn-theme" type="submit">Update</button>
+												<button id="billing-submit" class="btn btn-theme" type="submit">Update</button>
 											</div>
 										</form>
 									</div><!--/tab-pane-->
-									
+									<div class="tab-pane" id="shipping">
+										<form class="ajax-upload" action="{{ route('users.update', $profile->id) }}" method="post">
+											@csrf
+											@method('PUT')
+											<div class="form-group">
+												<label for="card-type">Division</label>
+												<select id="shipping-division" name="shipping_division_id" class="custom-select">
+													<option value="0" selected>--Select division--</option>
+													@foreach($divisions as $division)
+													<option value="{{ $division->id }}" @if($division->id == $profile->shipping_division->id) selected @endif>{{ $division->name }}</option>
+													@endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="district">District</label>
+												<select id="shipping-district" name="shipping_district_id" class="custom-select">
+													<option value="{{ $profile->district->id }}" selected>{{ $profile->shipping_district->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="upazila">Upazila</label>
+												<select id="shipping-upazila" name="shipping_upazila_id" class="custom-select">
+													<option value="{{ $profile->upazila->id }}" selected>{{ $profile->shipping_upazila->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="union">Union</label>
+												<select id="shipping-union" name="shipping_union_id" class="custom-select">
+													<option value="{{ $profile->union->id }}" selected>{{ $profile->shipping_union->name }}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="region">Region</label>
+												<select id="shipping-region" name="shipping_region_id" class="custom-select">
+													<option value="{{ $profile->region->id ?? 0 }}" selected>{{ $profile->shipping_region->name ?? '--Select region--'}}</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<div class="col-xs-6">
+													<label for="ad">Address</label>
+													<textarea class="form-control" name="shipping_address" placeholder="Enter Address" title="Enter you Address">{{ $profile->shipping_address }}</textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<button id="shipping-submit" class="btn btn-theme" type="submit">Update</button>
+											</div>
+										</form>
+									</div><!--/tab-pane-->
 								</div><!--/tab-content-->
 							</div><!--/col-9-->
 						</div><!--/row-->
@@ -164,4 +279,7 @@ Edit Profile
 		</div>
 	</div>
 </div>
+@endsection
+@section('script')
+
 @endsection

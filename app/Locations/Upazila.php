@@ -21,7 +21,7 @@ class Upazila extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'bn_name', 'district_id', 'url', 'updated_at', 'created_at'
     ];
 
     /**
@@ -34,9 +34,9 @@ class Upazila extends Model
 		'created_at' => 'datetime',
     ];
 	public function district() {
-		return $this->belongsTo('App\District');
+		return $this->belongsTo('App\Locations\District');
 	}
 	public function unions() {
-		return $this->hasMany('App\Union');
+		return $this->hasMany('App\Locations\Union');
 	}
 }

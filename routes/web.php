@@ -16,6 +16,10 @@ Route::get('/', 'FrontEnd\HomeController@index')->name('index');
 Auth::routes(['verify' => true]);
 Route::get('contact-us', 'Backend\ContactUsController@create')->name('contact-us.create');
 Route::post('contact-us', 'Backend\ContactUsController@store')->name('contact-us.store');
+Route::resource('divisions', 'Locations\DivisionController');
+Route::resource('districts', 'Locations\DistrictController');
+Route::resource('upazilas', 'Locations\UpazilaController');
+Route::resource('unions', 'Locations\UnionController');
 
 //Routes for dashboard
 Route::group(['middleware' => ['auth']], function () {
@@ -28,11 +32,7 @@ Route::group(['middleware' => ['admin']], function () {
 	Route::resource('payments', 'Backend\PaymentController');
 	Route::resource('suppliers', 'Backend\SupplierController');
 	Route::resource('notifications', 'Backend\NotificationController');
-	Route::resource('divisions', 'Backend\Locations\DivisionController');
-	Route::resource('districts', 'Backend\Locations\DistrictController');
-	Route::resource('upazilas', 'Backend\Locations\UpazilaController');
-	Route::resource('unions', 'Backend\Locations\UnionController');
-	Route::resource('regions', 'Backend\Locations\RegionController');
+	Route::resource('regions', 'Locations\RegionController');
 	Route::resource('sizes', 'Backend\SizeController');
 	Route::resource('colors', 'Backend\ColorController');
 	Route::resource('products', 'Backend\ProductController');

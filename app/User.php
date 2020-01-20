@@ -52,19 +52,49 @@ class User extends Authenticatable
 		return $this->belongsTo('App\Payment');
 	}
 	public function division() {
-		return $this->belongsTo('App\Division');
+		return $this->belongsTo('App\Locations\Division');
 	}
 	public function district() {
-		return $this->belongsTo('App\District');
+		return $this->belongsTo('App\Locations\District');
 	}
 	public function upazila() {
-		return $this->belongsTo('App\Upazila');
+		return $this->belongsTo('App\Locations\Upazila');
 	}
 	public function union() {
-		return $this->belongsTo('App\Union');
+		return $this->belongsTo('App\Locations\Union');
 	}
 	public function region() {
-		return $this->belongsTo('App\Region');
+		return $this->belongsTo('App\Locations\Region');
+	}
+	public function billing_division() {
+		return $this->belongsTo('App\Locations\Division', 'billing_division_id', 'id');
+	}
+	public function billing_district() {
+		return $this->belongsTo('App\Locations\District', 'billing_district_id', 'id');
+	}
+	public function billing_upazila() {
+		return $this->belongsTo('App\Locations\Upazila', 'billing_upazila_id', 'id');
+	}
+	public function billing_union() {
+		return $this->belongsTo('App\Locations\Union', 'billing_union_id', 'id');
+	}
+	public function billing_region() {
+		return $this->belongsTo('App\Locations\Region', 'billing_region_id', 'id');
+	}
+	public function shipping_division() {
+		return $this->belongsTo('App\Locations\Division', 'shipping_division_id', 'id');
+	}
+	public function shipping_district() {
+		return $this->belongsTo('App\Locations\District', 'shipping_district_id', 'id');
+	}
+	public function shipping_upazila() {
+		return $this->belongsTo('App\Locations\Upazila', 'shipping_upazila_id', 'id');
+	}
+	public function shipping_union() {
+		return $this->belongsTo('App\Locations\Union', 'shipping_union_id', 'id');
+	}
+	public function shipping_region() {
+		return $this->belongsTo('App\Locations\Region', 'shipping_region_id', 'id');
 	}
 	public static function ifAdmin() {
 		if(\Auth::user()->role->id != 3)

@@ -7,6 +7,11 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\Payment;
+use App\Locations\Division;
+use App\Locations\District;
+use App\Locations\Upazila;
+use App\Locations\Union;
+use App\Locations\Region;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 
@@ -68,9 +73,14 @@ class UserController extends Controller
     public function edit($id)
     {
 		User::ifAdminOrUserBy($id);
-		$user = User::with('payment')->where('id', $id)->first();
+		$profile = User::with('payment', 'division', 'district', 'upazila', 'union', 'region', 'billing_division', 'billing_district', 'billing_upazila', 'billing_union', 'billing_region', 'shipping_division', 'shipping_district', 'shipping_upazila', 'shipping_union', 'shipping_region')->where('id', $id)->first();
 		$payments = Payment::all();
-        return view('backend.users.edit', compact('user', 'payments'));
+		$divisions = Division::all();
+		$districts = District::all();
+		$upazilas = Upazila::all();
+		$unions = Union::all();
+		$regions = Region::all();
+        return view('backend.users.edit', compact('profile', 'payments', 'divisions', 'districts', 'upazilas', 'unions', 'regions'));
     }
 
     /**

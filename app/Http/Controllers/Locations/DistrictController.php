@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Locations;
+namespace App\Http\Controllers\Locations;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Locations\District;
 
-class UpazilaController extends Controller
+class DistrictController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class UpazilaController extends Controller
      */
     public function index()
     {
-        //
+		$districts = District::select('id', 'name')->get();
+		return $districts;
     }
 
     /**
@@ -46,7 +48,8 @@ class UpazilaController extends Controller
      */
     public function show($id)
     {
-        //
+        $district = District::select('id', 'name')->where('id', $id)->with('upazilas')->get();
+		return $district;
     }
 
     /**

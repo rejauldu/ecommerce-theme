@@ -21,7 +21,7 @@ class District extends Model
      * @var array
      */
     protected $hidden = [
-        
+        'bn_name', 'division_id', 'lat', 'lon', 'url', 'updated_at', 'created_at'
     ];
 
     /**
@@ -34,9 +34,9 @@ class District extends Model
 		'created_at' => 'datetime',
     ];
 	public function division() {
-		return $this->belongsTo('App\Division');
+		return $this->belongsTo('App\Locations\Division');
 	}
-	public function upzilas() {
-		return $this->hasMany('App\Upazila');
+	public function upazilas() {
+		return $this->hasMany('App\Locations\Upazila');
 	}
 }

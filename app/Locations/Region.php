@@ -34,15 +34,15 @@ class Region extends Model
 		'created_at' => 'datetime',
     ];
 	public function division() {
-		return $this->belongsTo('App\Division');
+		return $this->belongsTo('App\Locations\Division');
 	}
 	public function district() {
-		return $this->belongsTo('App\District');
+		return $this->belongsTo('App\Locations\District');
 	}
 	public function upazila() {
-		return $this->belongsTo('App\Upazila');
+		return $this->belongsTo('App\Locations\Upazila');
 	}
 	public function union() {
-		return $this->belongsTo('App\Union');
+		return $this->belongsTo('App\Locations\Union');
 	}
 }

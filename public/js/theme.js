@@ -137,3 +137,52 @@ function displayPhotoOnSelect(input) {
 	}
 })();
 /* Fancy Tabs ends */
+/* Location control */
+(function() {
+	locationHandle('division', 'district', 'upazila', 'union', 'region');
+	locationHandle('billing-division', 'billing-district', 'billing-upazila', 'billing-union', 'billing-region');
+	locationHandle('shipping-division', 'shipping-district', 'shipping-upazila', 'shipping-union', 'shipping-region');
+})();
+function locationHandle(division, district, upazila, union, region) {
+	var division_el = document.getElementById(division);
+	var district_el = document.getElementById(district);
+	var upazila_el = document.getElementById(upazila);
+	var union_el = document.getElementById(union);
+	var region_el = document.getElementById(region);
+	if(division_el && district_el)
+	division_el.addEventListener('change', function() {
+		locationAjaxCall(division_el, district_el);
+	});
+	if(district_el && upazila_el)
+	district_el.addEventListener('change', function() {
+		locationAjaxCall(district_el, upazila_el);
+	});
+	if(upazila_el && union_el)
+	upazila_el.addEventListener('change', function() {
+		locationAjaxCall(upazila_el, union_el);
+	});
+	if(union_el && region_el)
+	union_el.addEventListener('change', function() {
+		locationAjaxCall(union_el, region_el);
+	});
+}
+function locationAjaxCall(item, child) {
+	var base_url = $("meta[name=base-url]")[0].content;
+	var id = item.id;
+	id = id.replace("billing-", "");
+	id = id.replace("shipping-", "");
+	var c_id = child.id;
+	c_id = c_id.replace("billing-", "");
+	c_id = c_id.replace("shipping-", "");
+	$.ajax({
+		url: base_url+'/'+id+'s/'+item.value,
+		success: function(result) {
+			var options = result[0][c_id+'s'];
+			var html = '<option value="0">--Select '+c_id+'--</option>';
+			options.forEach(function(entry) {
+				html += '<option value="'+entry.id+'">'+entry.name+'</option>';
+			});
+			child.innerHTML = html;
+		}
+	});
+}
