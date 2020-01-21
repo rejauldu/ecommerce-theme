@@ -26,6 +26,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', 'Backend\DashboardController@dashboard')->name('dashboard');
 	Route::resource('users', 'Backend\UserController');
 	Route::resource('chats', 'Backend\ChatController');
+	Route::resource('chats', 'Backend\ChatController');
+	Route::resource('traffic', 'Backend\TrafficController');
+	Route::get('traffic/traffic', 'Backend\TrafficController@traffic')->name('traffic.traffic');
 });
 Route::group(['middleware' => ['admin']], function () {
 	Route::resource('categories', 'Backend\CategoryController');

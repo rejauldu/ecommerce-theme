@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Blade;
 use App\Order;
 use App\Traffic;
 use Carbon\Carbon;
+use App\Http\Services\TrafficService;
 
 class DashBoardController extends Controller
 {
@@ -19,8 +20,8 @@ class DashBoardController extends Controller
      */
     public function dashboard()
     {
-		
-        return view('backend.dashboard');
+		$traffic = TrafficService::traffic();
+        return view('backend.dashboard', compact('traffic'));
     }
 
     /**
