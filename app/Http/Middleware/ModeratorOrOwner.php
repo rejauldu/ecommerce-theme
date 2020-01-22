@@ -6,7 +6,7 @@ use Closure;
 use Auth;
 use App\Permission;
 
-class Moderator
+class ModeratorOrOwner
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class Moderator
     public function handle($request, Closure $next, $name)
     {
 		$user = Auth::user();
-		if($user && $user->role_id == 3) {
+		if($user && $user->role_id == 3 || ($user->id == $request->user)) {
 			return $next($request);
 		} elseif($user && $user->role_id == 2) {
 			if($name) {

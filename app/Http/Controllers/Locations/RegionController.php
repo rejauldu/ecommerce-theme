@@ -11,6 +11,10 @@ use App\Locations\Region;
 
 class RegionController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('moderatorOrOwner:User');
+	}
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +22,8 @@ class RegionController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
 		$regions = Region::all();
-		return view('backend.locations.regions.index', compact('user', 'regions'));
+		return view('backend.locations.regions.index', compact('regions'));
     }
 
     /**
@@ -30,10 +33,9 @@ class RegionController extends Controller
      */
     public function create()
     {
-        $user = Auth::user();
 		$divisions = Division::select('id', 'name')->orderBy('name')->get();
 		$districts = District::select('id', 'name', 'division_id')->orderBy('name')->get();
-		return view('backend.locations.regions.create', compact('divisions', 'districts', 'user'));
+		return view('backend.locations.regions.create', compact('divisions', 'districts'));
     }
 
     /**
@@ -57,9 +59,8 @@ class RegionController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
 		$region = Region::find($id);
-		return view('backend.locations.regions.show', compact('user', 'region'));
+		return view('backend.locations.regions.show', compact('region'));
     }
 
     /**
@@ -70,11 +71,10 @@ class RegionController extends Controller
      */
     public function edit($id)
     {
-        $user = Auth::user();
 		$divisions = Division::select('id', 'name')->orderBy('name')->get();
 		$districts = District::select('id', 'name', 'division_id')->orderBy('name')->get();
         $region = Region::find($id);
-		return view('backend.locations.regions.create', compact('user', 'region', 'divisions', 'districts'));
+		return view('backend.locations.regions.create', compact('region', 'divisions', 'districts'));
     }
 
     /**

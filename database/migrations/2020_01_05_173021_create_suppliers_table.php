@@ -38,7 +38,8 @@ class CreateSuppliersTable extends Migration
 			$table->string('logo', 255)->nullable();
 			$table->integer('ranking')->nullable()->default(0);
 			$table->text('note')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+			$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

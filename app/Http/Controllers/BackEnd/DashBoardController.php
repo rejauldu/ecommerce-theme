@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Backend;
 use Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use App\Permission;
 use Illuminate\Support\Facades\Blade;
 use App\Order;
 use App\Traffic;
 use Carbon\Carbon;
 use App\Http\Services\TrafficService;
+use App\Http\Services\OrderService;
+use App\Http\Services\UserService;
+use App\Http\Services\ProductService;
 
 class DashBoardController extends Controller
 {
@@ -20,8 +24,13 @@ class DashBoardController extends Controller
      */
     public function dashboard()
     {
-		$traffic = TrafficService::traffic();
-        return view('backend.dashboard', compact('traffic'));
+		$traffic = TrafficService::getTraffic();
+		$devices = TrafficService::getDevices();
+		$browsers = TrafficService::getBrowsers();
+		$orders = OrderService::getReport();
+		$users = UserService::getTotal();
+		$products = ProductService::getProducts();
+        return view('backend.dashboard', compact('traffic', 'devices', 'browsers', 'orders', 'users', 'products'));
     }
 
     /**
@@ -105,10 +114,20 @@ class DashBoardController extends Controller
 		Blade::directive('endadmin', function () {
 			return "<?php endif; ?>";
 		});
-		Blade::directive('moderator', function () {
+		Blade::directive('moderator', function ($name=null) {
 			$isAuth = 'false';
-			if (Auth::user() && Auth::user()->role_id == 2) {
+			$user = Auth::user();
+			if($user && $user->role_id == 3) {
 				$isAuth = 'true';
+			} elseif($user && $user->role_id == 2) {
+				if($name) {
+					$permission = Permission::where('role_id', 2)->where('name', $name)->where('is_active', 1)->first();
+					if($permission != null) {
+						$isAuth = 'true';
+					}
+				} else {
+					$isAuth = 'true';
+				}
 			}
 			
 			return "<?php if ($isAuth): ?>";

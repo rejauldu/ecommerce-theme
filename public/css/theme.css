@@ -205,3 +205,7 @@ table.dataTable thead .sorting_desc_disabled:before {
     display: block;
     padding: 10px 15px;
 }
+/* Adminlte minimum height */
+.content-wrapper {
+		min-height:916px !important;
+}

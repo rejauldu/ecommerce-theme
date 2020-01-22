@@ -46,7 +46,8 @@ class CreateUsersTable extends Migration
 			$table->integer('shipping_district_id')->unsigned()->index()->nullable();
 			$table->integer('shipping_division_id')->unsigned()->index()->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+			$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

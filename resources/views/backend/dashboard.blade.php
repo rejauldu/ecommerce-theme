@@ -31,13 +31,13 @@
 							<div class="col-md-3 col-sm-6 col-12">
 								<div class="small-box bg-aqua">
 									<div class="inner">
-										<h3>123</h3>
+										<h3>{{ $orders->incomplete }}</h3>
 										<h4>Incomplete Orders</h4>
 									</div>
 									<div class="icon">
 										<i class="ion ion-bag"></i>
 									</div>
-									<a href="" class="small-box-footer">Go to incomplete orders page<i class="fa fa-arrow-circle-right"></i></a>
+									<a href="{{ route('orders.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 								</div>
 								<!-- /.info-box -->
 							</div>
@@ -45,55 +45,55 @@
 							<div class="col-md-3 col-sm-6 col-12">
 								<div class="small-box bg-green">
 									<div class="inner">
-										<h3>123</h3>
+										<h3>{{ $orders->total }}</h3>
 										<h4>Total Orders</h4>
 									</div>
 									<div class="icon">
 										<i class="ion ion-stats-bars"></i>
 									</div>
-									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+									<a href="{{ route('orders.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 								</div>
 								<!-- /.info-box -->
 							</div>
-							<!-- /.col -->
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-green">
+								<div class="small-box bg-yellow">
 									<div class="inner">
-										<h3>123</h3>
-										<h4>User Registrations</h4>
-									</div>
-									<div class="icon">
-										<i class="ion ion-person-add"></i>
-									</div>
-									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-								</div>
-								<!-- /.info-box -->
-							</div>
-							<!-- /.col -->
-							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-aqua">
-									<div class="inner">
-										<h3>123</h3>
-										<h4>Number of Listings</h4>
+										<h3>{{ $orders->sale }}</h3>
+										<h4>Total Sales</h4>
 									</div>
 									<div class="icon">
 										<i class="ion ion-pie-graph"></i>
 									</div>
-									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+									<a href="{{ route('orders.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+								</div>
+								<!-- /.info-box -->
+							</div>
+							<!-- /.col -->
+							<!-- /.col -->
+							<div class="col-md-3 col-sm-6 col-12">
+								<div class="small-box bg-blue">
+									<div class="inner">
+										<h3>{{ $users }}</h3>
+										<h4>Registered Users</h4>
+									</div>
+									<div class="icon">
+										<i class="ion ion-person-add"></i>
+									</div>
+									<a href="{{ route('users.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 								</div>
 								<!-- /.info-box -->
 							</div>
 							<!-- /.col -->
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-green">
+								<div class="small-box bg-primary text-white">
 									<div class="inner">
-										<h3>123</h3>
-										<h4>Complete Orders</h4>
+										<h3>{{ $products->total }}</h3>
+										<h4>Total products</h4>
 									</div>
 									<div class="icon">
 										<i class="ion ion-bag"></i>
 									</div>
-									<a href="" class="small-box-footer">Go to incomplete orders page<i class="fa fa-arrow-circle-right"></i></a>
+									<a href="{{ route('products.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 								</div>
 								<!-- /.info-box -->
 							</div>
@@ -101,43 +101,41 @@
 							<div class="col-md-3 col-sm-6 col-12">
 								<div class="small-box small-box bg-red">
 									<div class="inner">
-										<h3>123
-											<sup style="font-size: 20px">%</sup>
-										</h3>
-										<h4>Bounce Rate</h4>
+										<h3>{{ $products->out_of_stock }}</h3>
+										<h4>Out of stock</h4>
 									</div>
 									<div class="icon">
 										<i class="ion ion-stats-bars"></i>
 									</div>
-									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+									<a href="{{ route('products.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 								</div>
 								<!-- /.info-box -->
 							</div>
 							<!-- /.col -->
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-red">
+								<div class="small-box bg-danger text-white">
 									<div class="inner">
-										<h3>123</h3>
-										<h4>Total Bounce Orders</h4>
+										<h3>{{ $products->available }}</h3>
+										<h4>Active products</h4>
 									</div>
 									<div class="icon">
 										<i class="ion ion-person-add"></i>
 									</div>
-									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+									<a href="{{ route('products.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 								</div>
 								<!-- /.info-box -->
 							</div>
 							<!-- /.col -->
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-aqua">
+								<div class="small-box bg-info text-white">
 									<div class="inner">
-										<h3>123</h3>
-										<h4>Total Quantity</h4>
+										<h3>{{ \Auth::user()->unreadNotifications()->groupBy('notifiable_type')->count() }}</h3>
+										<h4>Unseen notifications</h4>
 									</div>
 									<div class="icon">
 										<i class="ion ion-pie-graph"></i>
 									</div>
-									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+									<a href="{{ route('notifications.index') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
 								</div>
 								<!-- /.info-box -->
 							</div>
@@ -166,7 +164,7 @@
 			<div class="col-12 col-md-6">
 				<div class="box box-info">
 					<div class="box-header with-border">
-						<h3 class="box-title">Computer vs Mobile</h3>
+						<h3 class="box-title">Traffic Comparison</h3>
 						<div class="box-tools pull-right">
 							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
 							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -330,12 +328,10 @@
 							<!-- /.col -->
 							<div class="col-4">
 								<ul class="chart-legend clearfix">
-									<li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-									<li><i class="fa fa-circle-o text-green"></i> IE</li>
-									<li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-									<li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-									<li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-									<li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+									@php($colors = ['primary', 'success', 'info', 'warning', 'danger', 'secondary', 'info', 'warning'])
+									@foreach($browsers as $key => $value)
+									<li><i class="fa fa-circle-o text-{{ array_shift($colors) }}"></i> {{ $key }}</li>
+									@endforeach
 								</ul>
 							</div>
 							<!-- /.col -->
@@ -350,7 +346,7 @@
 			<div class="col-12 col-md-6">
 				<div class="box box-default">
 					<div class="box-header with-border">
-						<h3 class="box-title">Operating Systems</h3>
+						<h3 class="box-title">Computer Vs Mobile</h3>
 						<div class="box-tools pull-right">
 							<button type="button" class="btn btn-box-tool" data-widget="collapse">
 								<i class="fa fa-minus"></i>
@@ -365,19 +361,17 @@
 						<div class="row">
 							<div class="col-8">
 								<div class="chart-responsive">
-									<canvas id="pieChart"></canvas>
+									<canvas id="pieChart-device"></canvas>
 								</div>
 								<!-- ./chart-responsive -->
 							</div>
 							<!-- /.col -->
 							<div class="col-4">
 								<ul class="chart-legend clearfix">
-									<li><i class="fa fa-circle-o text-red"></i> Chrome</li>
-									<li><i class="fa fa-circle-o text-green"></i> IE</li>
-									<li><i class="fa fa-circle-o text-yellow"></i> FireFox</li>
-									<li><i class="fa fa-circle-o text-aqua"></i> Safari</li>
-									<li><i class="fa fa-circle-o text-light-blue"></i> Opera</li>
-									<li><i class="fa fa-circle-o text-gray"></i> Navigator</li>
+									@php($colors = ['success', 'info', 'danger'])
+									@foreach($devices as $key => $value)
+									<li><i class="fa fa-circle-o text-{{ array_shift($colors) }}"></i> {{ $key }}</li>
+									@endforeach
 								</ul>
 							</div>
 							<!-- /.col -->
@@ -479,8 +473,8 @@
 		// This will get the first returned node in the jQuery collection.
 		var areaChart       = new Chart(areaChartCanvas);
 
-		var areaChartData = {
-		  labels  : [@foreach($traffic['this_year'] as $item) months[{{ $item['month'] }}-1], @endforeach],
+		var chartData = {
+		  labels  : [],
 		  datasets: [
 			{
 			  label               : 'Last Year',
@@ -490,7 +484,7 @@
 			  pointStrokeColor    : '#c1c7d1',
 			  pointHighlightFill  : '#fff',
 			  pointHighlightStroke: 'rgba(220,220,220,1)',
-			  data                : [@foreach($traffic['last_year'] as $item) {{ $item['total'] }}, @endforeach]
+			  data                : []
 			},
 			{
 			  label               : 'This Year',
@@ -500,10 +494,14 @@
 			  pointStrokeColor    : 'rgba(60,141,188,1)',
 			  pointHighlightFill  : '#fff',
 			  pointHighlightStroke: 'rgba(60,141,188,1)',
-			  data                : [@foreach($traffic['this_year'] as $item) {{ $item['total'] }}, @endforeach]
+			  data                : []
 			}
 		  ]
 		};
+		var areaChartData = chartData;
+		areaChartData.labels = [@foreach($traffic['this_year'] as $item) months[{{ $item['month'] }}-1], @endforeach];
+		areaChartData.datasets[0].data = [@foreach($traffic['last_year'] as $item) {{ $item['total'] }}, @endforeach];
+		areaChartData.datasets[1].data = [@foreach($traffic['this_year'] as $item) {{ $item['total'] }}, @endforeach];
 
 		var areaChartOptions = {
 		  //Boolean - If we should show the scale at all
@@ -545,7 +543,7 @@
 		};
 
 		//Create the line chart
-		areaChart.Line(areaChartData, areaChartOptions)
+		areaChart.Line(areaChartData, areaChartOptions);
 
 		//-------------
 		//- LINE CHART -
@@ -560,46 +558,6 @@
 		//- PIE CHART -
 		//-------------
 		// Get context with jQuery - using jQuery's .get() method.
-		var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
-		var pieChart       = new Chart(pieChartCanvas);
-		var PieData        = [
-		  {
-			value    : 700,
-			color    : '#f56954',
-			highlight: '#f56954',
-			label    : 'Chrome'
-		  },
-		  {
-			value    : 500,
-			color    : '#00a65a',
-			highlight: '#00a65a',
-			label    : 'IE'
-		  },
-		  {
-			value    : 400,
-			color    : '#f39c12',
-			highlight: '#f39c12',
-			label    : 'FireFox'
-		  },
-		  {
-			value    : 600,
-			color    : '#00c0ef',
-			highlight: '#00c0ef',
-			label    : 'Safari'
-		  },
-		  {
-			value    : 300,
-			color    : '#3c8dbc',
-			highlight: '#3c8dbc',
-			label    : 'Opera'
-		  },
-		  {
-			value    : 100,
-			color    : '#d2d6de',
-			highlight: '#d2d6de',
-			label    : 'Navigator'
-		  }
-		]
 		var pieOptions     = {
 		  //Boolean - Whether we should show a stroke on each segment
 		  segmentShowStroke    : true,
@@ -624,9 +582,38 @@
 		  //String - A legend template
 		  legendTemplate       : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
 		};
+		var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+		var colors = ['#3490dc', '#38c172', '#6cb2eb', '#ffed4a', '#e3342f', '#6c757d', '#6cb2eb', '#ffed4a'];
+		var PieData        = [];
+		@foreach($browsers as $key => $value)
+			var entry = {
+				value    : {{ $value }},
+				color    : colors.shift(),
+				highlight: '#888888',
+				label    : '{{ $key }}'
+			};
+			PieData.push(entry);
+		@endforeach
+		var pieChart       = new Chart(pieChartCanvas);
+		pieChart.Doughnut(PieData, pieOptions);
+		
+		var pieChartDeviceCanvas = $('#pieChart-device').get(0).getContext('2d');
+		var colors = ['#38c172', '#ffed4a', '#e3342f'];
+		var PieData        = [];
+		@foreach($devices as $key => $value)
+			var entry = {
+				value    : {{ $value }},
+				color    : colors.shift(),
+				highlight: '#888888',
+				label    : '{{ $key }}'
+			};
+			PieData.push(entry);
+		@endforeach
+		var pieChart       = new Chart(pieChartDeviceCanvas);
+		pieChart.Doughnut(PieData, pieOptions);
+		
 		//Create pie or douhnut chart
 		// You can switch between pie and douhnut using the method below.
-		pieChart.Doughnut(PieData, pieOptions);
 
 		//-------------
 		//- BAR CHART -

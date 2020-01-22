@@ -29,21 +29,22 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('chats', 'Backend\ChatController');
 	Route::resource('traffic', 'Backend\TrafficController');
 	Route::get('traffic/traffic', 'Backend\TrafficController@traffic')->name('traffic.traffic');
-});
-Route::group(['middleware' => ['admin']], function () {
-	Route::resource('categories', 'Backend\CategoryController');
-	Route::resource('payments', 'Backend\PaymentController');
-	Route::resource('suppliers', 'Backend\SupplierController');
-	Route::resource('notifications', 'Backend\NotificationController');
-	Route::resource('regions', 'Locations\RegionController');
-	Route::resource('sizes', 'Backend\SizeController');
-	Route::resource('colors', 'Backend\ColorController');
-	Route::resource('products', 'Backend\ProductController');
-	Route::resource('units', 'Backend\UnitController');
-	Route::resource('order-statuses', 'Backend\OrderStatusController');
-	Route::resource('shippers', 'Backend\ShipperController');
-	Route::resource('orders', 'Backend\OrderController');
-	Route::get('orders-incomplete', 'Backend\OrderController@incomplete')->name('orders.incomplete');
+	
+	Route::resource('categories', 'Backend\CategoryController')->middleware('moderator:Category');
+	Route::resource('payments', 'Backend\PaymentController')->middleware('moderator:Payment');
+	Route::resource('suppliers', 'Backend\SupplierController')->middleware('moderator:Supplier');
+	Route::resource('notifications', 'Backend\NotificationController')->middleware('moderator:Notification');
+	Route::resource('regions', 'Locations\RegionController')->middleware('moderator:Location');
+	Route::resource('sizes', 'Backend\SizeController')->middleware('moderator:Size');
+	Route::resource('colors', 'Backend\ColorController')->middleware('moderator:Color');
+	Route::resource('products', 'Backend\ProductController')->middleware('moderator:Product');
+	Route::resource('units', 'Backend\UnitController')->middleware('moderator:Unit');
+	Route::resource('order-statuses', 'Backend\OrderStatusController')->middleware('moderator:Order Status');
+	Route::resource('shippers', 'Backend\ShipperController')->middleware('moderator:Shipper');
+	Route::resource('orders', 'Backend\OrderController')->middleware('moderator:Order');
+	Route::resource('permissions', 'Backend\PermissionController')->middleware('moderator:Permission');
+	Route::put('permissions-update', 'Backend\PermissionController@updateList')->name('permissions.update.list')->middleware('moderator:Permission');
+	Route::get('orders-incomplete', 'Backend\OrderController@incomplete')->name('orders.incomplete')->middleware('moderator:Permission');
 	Route::get('/clear-cache', function() {
 		Artisan::call('cache:clear');
 		Artisan::call('cache:clear');

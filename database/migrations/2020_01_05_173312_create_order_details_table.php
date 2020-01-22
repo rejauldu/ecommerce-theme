@@ -20,7 +20,8 @@ class CreateOrderDetailsTable extends Migration
 			$table->integer('product_id')->unsigned()->index();
 			$table->integer('quantity')->default(1);
 			$table->integer('discount')->unsigned()->default(0);
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+			$table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

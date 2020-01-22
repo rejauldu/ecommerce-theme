@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
 		// factory(App\OrderStatus::class, 8)->create();
 		// factory(App\Order::class, 200)->create();
 		// factory(App\OrderDetail::class, 200)->create();
+		// factory(App\Permission::class, 15)->create();
     }
 }

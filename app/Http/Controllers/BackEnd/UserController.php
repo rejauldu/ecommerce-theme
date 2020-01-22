@@ -17,6 +17,10 @@ use Auth;
 
 class UserController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('moderatorOrOwner:User');
+	}
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +28,6 @@ class UserController extends Controller
      */
     public function index()
     {
-		User::ifAdmin();
 		$users = User::with('district', 'role')->paginate(50);
         return view('backend.users.index', compact('users'));
     }
@@ -36,7 +39,6 @@ class UserController extends Controller
      */
     public function create()
     {
-		User::ifAdmin();
         return view('backend.emails.create');
     }
 
@@ -59,7 +61,6 @@ class UserController extends Controller
      */
     public function show($id)
     {
-		User::ifAdminOrUserBy($id);
 		$user = User::find($id);
         return view('backend.users.show', compact('user'));
     }
@@ -72,7 +73,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-		User::ifAdminOrUserBy($id);
 		$profile = User::with('payment', 'division', 'district', 'upazila', 'union', 'region', 'billing_division', 'billing_district', 'billing_upazila', 'billing_union', 'billing_region', 'shipping_division', 'shipping_district', 'shipping_upazila', 'shipping_union', 'shipping_region')->where('id', $id)->first();
 		$payments = Payment::all();
 		$divisions = Division::all();
@@ -92,7 +92,6 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-		User::ifAdminOrUserBy($id);
 		$file = $request->file('photo');
 		if($file) {
 			$destination_path = 'assets/profile';
@@ -121,7 +120,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::ifAdminOrUserBy($id);
 		$user = User::find($id);
 		$user->delete();
 		return redirect()->back()->with('message', 'User has been deleted');

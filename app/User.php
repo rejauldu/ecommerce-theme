@@ -105,4 +105,7 @@ class User extends Authenticatable
 		if($user->role->id != 3 && $user->id != $id)
 			return redirect()->back();
 	}
+	public static function isUserBy($id) {
+		return \Auth::user()->id == $id;
+	}
 }
