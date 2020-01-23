@@ -153,15 +153,11 @@ class DashBoardController extends Controller
     {
         view()->composer('*', function ($view) {
 			//Logged in user for theme
-			if (\Schema::hasTable('users')) {
-				$user = Auth::user();
-				view()->share('user', $user);
-			}
+			$user = Auth::user();
+			view()->share('user', $user);
 			//Incomplete order counter for theme
-			if (\Schema::hasTable('orders')) {
-				$countIncomplete = Order::where('order_status_id', 2)->get()->count();
-				view()->share('countIncomplete', $countIncomplete);
-			}
+			$incomplete_for_admin = Order::where('order_status_id', 2)->get()->count();
+			view()->share('incomplete_for_admin', $incomplete_for_admin);
 		});
     }
 	public static function traffic() {

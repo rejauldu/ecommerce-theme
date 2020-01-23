@@ -29,7 +29,7 @@
 					<div class="box-body">
 						<div class="row">
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-aqua">
+								<div class="small-box bg-danger text-white">
 									<div class="inner">
 										<h3>{{ $orders->incomplete }}</h3>
 										<h4>Incomplete Orders</h4>
@@ -113,7 +113,7 @@
 							</div>
 							<!-- /.col -->
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-danger text-white">
+								<div class="small-box bg-green">
 									<div class="inner">
 										<h3>{{ $products->available }}</h3>
 										<h4>Active products</h4>
@@ -127,9 +127,9 @@
 							</div>
 							<!-- /.col -->
 							<div class="col-md-3 col-sm-6 col-12">
-								<div class="small-box bg-info text-white">
+								<div class="small-box bg-aqua">
 									<div class="inner">
-										<h3>{{ \Auth::user()->unreadNotifications()->groupBy('notifiable_type')->count() }}</h3>
+										<h3>{{ $user->unreadNotifications()->groupBy('notifiable_type')->count() }}</h3>
 										<h4>Unseen notifications</h4>
 									</div>
 									<div class="icon">

@@ -17,7 +17,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-		
 		$orders = Order::all();
 		return view('backend.orders.index', compact('orders'));
     }
@@ -108,6 +107,17 @@ class OrderController extends Controller
     {
 		
 		$orders = Order::where('order_status_id', 2)->get();
+		return view('backend.orders.index', compact('orders'));
+    }
+	/**
+     * Display a listing of the resource for a specific user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function user()
+    {
+		$user = Auth::user();
+		$orders = Order::where('customer_id', $user->id)->get();
 		return view('backend.orders.index', compact('orders'));
     }
 }

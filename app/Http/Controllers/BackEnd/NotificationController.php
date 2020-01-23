@@ -18,8 +18,9 @@ class NotificationController extends Controller
      */
     public function index()
     {
-		
-        return view('backend.notifications.index');
+		$user = User::find(1);
+		$notifications = $user->notifications;
+        return view('backend.notifications.index', compact('notifications'));
     }
 
     /**
@@ -89,5 +90,16 @@ class NotificationController extends Controller
     public function destroy($id)
     {
         //
+    }
+	/**
+     * Display a listing of the resource for a specific user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function user()
+    {
+		$user = Auth::user();
+		$notifications = $user->notifications;
+        return view('backend.notifications.index', compact('notifications'));
     }
 }

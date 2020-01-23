@@ -62,8 +62,8 @@
 			</li>
 			@endmoderator
 			@user
-			<li class="{{ Request::is('notifications') ? 'active' : '' }}">
-				<a href="{{ route('notifications.index') }}"><i class="fa fa-bell"></i><span>{{ __('My Notifications') }}</span></a>
+			<li class="{{ Request::is('notifications*') ? 'active' : '' }}">
+				<a href="{{ route('notifications.user') }}"><i class="fa fa-bell"></i><span>{{ __('My Notifications') }}</span></a>
 			</li>
 			@enduser
 			@moderator
@@ -77,7 +77,7 @@
 					<li class="{{ Request::is('notifications') ? 'active' : '' }}"><a href="{{ route('notifications.index') }}"><i class="fa fa-circle-o"></i> {{ __('All Notifications') }}</a></li>
 					<li class="{{ Request::is('notifications/create') ? 'active' : '' }}"><a href="{{ route('notifications.create') }}"><i class="fa fa-circle-o"></i> {{ __('Send email') }}</a></li>
 					@endmoderator
-					<li class=""><a href="#"><i class="fa fa-circle-o"></i> {{ __('My Notifications') }}</a></li>
+					<li class=""><a href="{{ route('notifications.user') }}"><i class="fa fa-circle-o"></i> {{ __('My Notifications') }}</a></li>
 				</ul>
 			</li>
 			@endmoderator
@@ -177,17 +177,22 @@
 				</ul>
 			</li>
 			@endmoderator
+			@user
+			<li class="{{ Request::is('orders*') ? 'active' : '' }}">
+				<a href="{{ route('orders.user') }}"><i class="fa fa-shopping-cart"></i><span>{{ __('My Orders') }}</span></a>
+			</li>
+			@enduser
 			@moderator(Order)
 			<li class="treeview {{ Request::is('orders*') ? 'active' : '' }}">
 				<a href="#">
 					<i class="fa  fa-shopping-cart" aria-hidden="true"></i> <span>Order</span>
 					<span class="pull-right-container">
 						<i class="fa fa-angle-left pull-right"></i>
-						<small><span class="badge badge-danger">{{ $countIncomplete ?? 0 }}</span></small>
+						<small><span class="badge badge-danger">{{ $incomplete_for_admin ?? 0 }}</span></small>
 					</span>
 				</a>
 				<ul class="treeview-menu">
-					<li class="{{ Request::is('orders-incomplete') ? 'active' : '' }}"><a href="{{ route('orders.incomplete') }}"><i class="fa fa-circle-o"></i>Incomplete Orders <small class="label pull-right"><span class="badge badge-danger">{{ $countIncomplete ?? 0 }}</span></small></a></li>
+					<li class="{{ Request::is('orders-incomplete') ? 'active' : '' }}"><a href="{{ route('orders.incomplete') }}"><i class="fa fa-circle-o"></i>Incomplete Orders <small class="label pull-right"><span class="badge badge-danger">{{ $incomplete_for_admin ?? 0 }}</span></small></a></li>
 					<li class="{{ Request::is('orders') ? 'active' : '' }}"><a href="{{ route('orders.index') }}"><i class="fa fa-circle-o"></i> All Orders</a></li>
 				</ul>
 			</li>

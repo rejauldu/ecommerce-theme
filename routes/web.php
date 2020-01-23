@@ -29,6 +29,8 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('chats', 'Backend\ChatController');
 	Route::resource('traffic', 'Backend\TrafficController');
 	Route::get('traffic/traffic', 'Backend\TrafficController@traffic')->name('traffic.traffic');
+	Route::get('notifications-user', 'Backend\NotificationController@user')->name('notifications.user');
+	Route::get('orders-user', 'Backend\OrderController@user')->name('orders.user');
 	
 	Route::resource('categories', 'Backend\CategoryController')->middleware('moderator:Category');
 	Route::resource('payments', 'Backend\PaymentController')->middleware('moderator:Payment');

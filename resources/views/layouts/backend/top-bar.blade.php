@@ -24,19 +24,50 @@
 					</a>
 				</li>
 				<!-- Notifications: style can be found in dropdown.less -->
+				@moderator('Notification')
 				<li class="nav-item notifications-menu">
-					<a href="#" class="nav-link py-0">
+					<a href="{{ route('notifications.index') }}" class="nav-link py-0">
 						<i class="fa fa-bell-o"></i>
-						<span class="badge badge-warning">10</span>
+						@php($unread = \App\User::find(1)->unreadNotifications()->groupBy('notifiable_type')->count())
+						@if($unread>0)
+						<span class="badge badge-warning">{{ $unread }}</span>
+						@endif
 					</a>
 				</li>
+				@endmoderator
+				@user
+				<li class="nav-item notifications-menu">
+					<a href="{{ route('notifications.index') }}" class="nav-link py-0">
+						<i class="fa fa-bell-o"></i>
+						@php($unread = $user->unreadNotifications()->groupBy('notifiable_type')->count())
+						@if($unread>0)
+						<span class="badge badge-warning">{{ $unread }}</span>
+						@endif
+					</a>
+				</li>
+				@enduser
 				<!-- Tasks: style can be found in dropdown.less -->
+				@moderator('Order')
 				<li class="nav-item tasks-menu">
-					<a href="#" class="nav-link py-0">
-						<i class="fa fa-flag-o"></i>
-						<span class="badge badge-danger">9</span>
+					<a href="{{ route('orders.index') }}" class="nav-link py-0">
+						<i class="fa fa-shopping-cart"></i>
+						@if($incomplete_for_admin>0)
+						<span class="badge badge-danger">{{ $incomplete_for_admin }}</span>
+						@endif
 					</a>
 				</li>
+				@endmoderator
+				@user
+				<li class="nav-item tasks-menu">
+					<a href="{{ route('orders.index') }}" class="nav-link py-0">
+						<i class="fa fa-shopping-cart"></i>
+						@php($incomplete_for_user = \App\Order::where('order_status_id', 2)->where('id', $user->id)->get()->count())
+						@if($incomplete_for_user>0)
+						<span class="badge badge-danger">{{ $incomplete_for_user }}</span>
+						@endif
+					</a>
+				</li>
+				@enduser
 				<!-- User Account: style can be found in dropdown.less -->
 				<li class="nav-item dropdown user user-menu">
 					<a href="#" class="nav-link py-0 dropdown-toggle" data-toggle="dropdown">
