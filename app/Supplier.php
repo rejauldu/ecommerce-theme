@@ -12,7 +12,7 @@ class Supplier extends Model
      * @var array
      */
     protected $fillable = [
-        'company_name', 'contact_name', 'address1', 'address2', 'division_id', 'district_id', 'upazila_id', 'union_id', 'region_id', 'phone', 'fax', 'email', 'website', 'payment_id', 'discount_type', 'discount_percentage', 'category_id', 'discount_available', 'user_id', 'logo', 'ranking', 'note'
+        'company_name', 'contact_name', 'address', 'division_id', 'district_id', 'upazila_id', 'union_id', 'region_id', 'phone', 'fax', 'email', 'website', 'payment_id', 'discount_type', 'discount', 'category_id', 'discount_available', 'user_id', 'logo', 'ranking', 'note'
     ];
 
     /**

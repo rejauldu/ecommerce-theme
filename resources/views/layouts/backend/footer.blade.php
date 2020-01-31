@@ -57,7 +57,7 @@
 	<script src="{{ asset('js/demo.js') }}"></script>
 	<script src="{{ asset('js/smooth-scroll.js') }}"></script>
 	<!--- Box JavaScript -->
-	<script src="{{ asset('js/theme.js') }}"></script>
+	<script src="{{ asset('js/theme.js') }}?{{ time() }}"></script>
 	@yield('script')
 </body>
 </html>

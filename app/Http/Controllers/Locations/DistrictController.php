@@ -48,7 +48,7 @@ class DistrictController extends Controller
      */
     public function show($id)
     {
-        $district = District::select('id', 'name')->where('id', $id)->with('upazilas')->get();
+        $district = District::select('id', 'name')->where('id', $id)->with('upazilas', 'regions')->get();
 		return $district;
     }
 

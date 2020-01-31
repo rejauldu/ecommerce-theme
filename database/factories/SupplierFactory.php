@@ -9,8 +9,7 @@ $factory->define(Supplier::class, function (Faker $faker) {
     return [
         'company_name' => $faker->word,
 		'contact_name' => $faker->name,
-		'address1' => $faker->address,
-		'address2' => $faker->address,
+		'address' => $faker->address,
 		'division_id' => function(){
     		return App\Locations\Division::all()->random();	
     	},
@@ -34,7 +33,7 @@ $factory->define(Supplier::class, function (Faker $faker) {
     		return App\Payment::all()->random();
     	},
 		'discount_type' => $faker->sentence(),
-		'discount_percentage' => $faker->numberBetween(5, 50),
+		'discount' => $faker->numberBetween(5, 50),
 		'category_id' => function(){
     		return App\Category::all()->random();
     	},

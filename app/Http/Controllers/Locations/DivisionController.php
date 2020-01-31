@@ -52,7 +52,7 @@ class DivisionController extends Controller
      */
     public function show($id)
     {
-        $division = Division::select('id', 'name')->where('id', $id)->with('districts')->get();
+        $division = Division::select('id', 'name')->where('id', $id)->with('districts', 'regions')->get();
 		return $division;
     }
 

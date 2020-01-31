@@ -17,8 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->increments('id');
 			$table->string('company_name', 50);
 			$table->string('contact_name', 50)->nullable();
-			$table->string('address1', 150)->nullable();
-			$table->string('address2', 150)->nullable();
+			$table->string('address', 150)->nullable();
 			$table->integer('division_id')->nullable()->unsigned()->index();
 			$table->integer('district_id')->nullable()->unsigned()->index();
 			$table->integer('upazila_id')->nullable()->unsigned()->index();
@@ -30,7 +29,7 @@ class CreateSuppliersTable extends Migration
 			$table->string('website', 60)->nullable();
 			$table->integer('payment_id')->unsigned()->index();
 			$table->string('discount_type', 100)->nullable();
-			$table->integer('discount_percentage')->nullable()->default(0);
+			$table->integer('discount')->nullable()->default(0);
 			$table->integer('category_id')->unsigned()->index();
 			$table->tinyInteger('discount_available')->nullable()->default(0);
 			$table->bigInteger('user_id')->unsigned()->index();

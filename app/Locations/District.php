@@ -39,4 +39,7 @@ class District extends Model
 	public function upazilas() {
 		return $this->hasMany('App\Locations\Upazila');
 	}
+	public function regions() {
+		return $this->hasMany('App\Locations\Region');
+	}
 }

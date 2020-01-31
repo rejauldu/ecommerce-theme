@@ -157,6 +157,10 @@ function locationHandle(division, district, upazila, union, region) {
 	district_el.addEventListener('change', function() {
 		locationAjaxCall(district_el, upazila_el);
 	});
+	if(division_el && region_el)
+	division_el.addEventListener('change', function() {
+		locationAjaxCall(division_el, region_el);
+	});
 	if(upazila_el && union_el)
 	upazila_el.addEventListener('change', function() {
 		locationAjaxCall(upazila_el, union_el);

@@ -36,4 +36,7 @@ class Division extends Model
 	public function districts() {
 		return $this->hasMany('App\Locations\District');
 	}
+	public function regions() {
+		return $this->hasMany('App\Locations\Region');
+	}
 }
